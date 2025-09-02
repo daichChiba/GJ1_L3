@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="ect\MathUtilityEX.cpp" />
     <ClCompile Include="ect\worldTransfromEX.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene\scenes\GameScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
@@ -259,6 +260,7 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene\scenes\GameScene.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\scenes\ResetScene.h" />
