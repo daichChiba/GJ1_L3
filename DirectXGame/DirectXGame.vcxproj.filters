@@ -16,10 +16,40 @@
     <Filter Include="シェーダー ファイル">
       <UniqueIdentifier>{718c7f4c-fc51-40ad-a221-b9456a7a1a3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\ect">
+      <UniqueIdentifier>{07659d38-f0ec-4ad6-bdf5-58c2548686f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene">
+      <UniqueIdentifier>{03667b83-5593-4aab-a2e9-54fd1861c3a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\scene">
+      <UniqueIdentifier>{9086ea44-7dee-41da-87d4-14fd819d0657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene\scenes">
+      <UniqueIdentifier>{4393bf7f-d04c-4c31-9b99-2aa7955e6ed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\scene\scenes">
+      <UniqueIdentifier>{d030ceb1-78a6-4113-bbb5-234f4de57f89}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ect\MathUtilityEX.cpp">
+      <Filter>ソース ファイル\ect</Filter>
+    </ClCompile>
+    <ClCompile Include="ect\worldTransfromEX.cpp">
+      <Filter>ソース ファイル\ect</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scene.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\scenes\ResetScene.cpp">
+      <Filter>ソース ファイル\scene\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\scenes\GameScene.cpp">
+      <Filter>ソース ファイル\scene\scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,5 +100,16 @@
     <None Include="Resources\shaders\Terrain.hlsli">
       <Filter>シェーダー ファイル</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Scene\Scene.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\scenes\ResetScene.h">
+      <Filter>ヘッダー ファイル\scene\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\scenes\GameScene.h">
+      <Filter>ヘッダー ファイル\scene\scenes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
