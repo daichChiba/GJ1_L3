@@ -14,7 +14,9 @@ void GameScene::Initialize() {
 }
 
 void GameScene::Update() {
-
+	if (isFinish == true) {
+		nextScene_ = SceneID::Reset;
+	}
 }
 
 void GameScene::Draw() {
@@ -69,4 +71,8 @@ void GameScene::DrawImGui() {
 	ImGui::Text("Test");
 	ImGui::Checkbox("isFinished", &isFinish);
 	ImGui::End();
+}
+
+SceneID GameScene::NextScene() const {
+	return nextScene_;
 }

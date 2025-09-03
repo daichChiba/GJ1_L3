@@ -31,5 +31,8 @@ public:
 	/// ImGui描画
 	/// </summary>
 	void DrawImGui() override;
+	SceneID NextScene() const override;
 
+private:
+	SceneID nextScene_;
 };

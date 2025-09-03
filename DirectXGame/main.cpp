@@ -1,3 +1,5 @@
+#include "Scene/manager/SceneManager.h"
+#include "Scene/manager/SceneID.h"
 #include <Windows.h>
 #include <KamataEngine.h>
 #include <map>
@@ -10,6 +12,10 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 	// DirectXCommonインスタンスの取得
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
+
+	// シーンマネージャー
+	SceneManager sceneManager_;
+	sceneManager_.ChangeScene(SceneID::Reset); // 最初は GameScene
 
 
 #pragma region 汎用機能初期化
@@ -27,10 +33,12 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 			break;
 		}
 
+		sceneManager_.Update();
 
 		// ImGui受付開始
 		imguiManager_->Begin();
 
+		sceneManager_.DrawImGui();
 
 		// ImGui受付開始
 		imguiManager_->End();
@@ -39,6 +47,8 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		dxCommon->PreDraw();
 
 		// ここに描画処理を記述する
+
+		sceneManager_.Draw();
 
 		// ImGui描画
 		imguiManager_->Draw();

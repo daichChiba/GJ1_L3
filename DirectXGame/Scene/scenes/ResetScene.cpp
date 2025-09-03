@@ -16,6 +16,10 @@ void ResetScene::Update() {
 	if (input_->GetInstance()->PushKey(DIK_SPACE)) {
 		isFinish = true;
 	}
+
+	if (isFinish==true) {
+		nextScene_ = SceneID::Game;
+	}
 }
 
 void ResetScene::Draw() {
@@ -31,4 +35,8 @@ void ResetScene::DrawImGui() {
 	ImGui::Text("Test");
 	ImGui::Checkbox("isFinished", &isFinish);
 	ImGui::End();
+}
+
+SceneID ResetScene::NextScene() const {
+	return nextScene_;
 }
