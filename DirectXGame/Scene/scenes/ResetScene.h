@@ -1,6 +1,7 @@
 #pragma once
 #include "../Scene.h"
 
+
 class ResetScene : public Scene {
 public:
 	/// <summary>
@@ -32,6 +33,8 @@ public:
 	/// </summary>
 	void DrawImGui() override;
 	SceneID NextScene() const override;
+
+	
 
 private:
 	SceneID nextScene_;

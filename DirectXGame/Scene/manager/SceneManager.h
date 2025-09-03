@@ -28,7 +28,16 @@ public:
 	/// </summary>
 	void DrawImGui();
 
+	// setter
+	void SetEreaNum(int num) { ereaNum = num; }
+	void SetStageNum(int num) { stageNum = num; }
+	void SetStage(std::string str) { stage = str; }
+
 private:
 	std::unique_ptr<Scene> currentScene_;
 	SceneID currentSceneID_;
+
+	int ereaNum = 1;
+	int stageNum = 1;
+	std::string stage = "Tutorial";
 };

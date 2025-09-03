@@ -1,6 +1,8 @@
 #pragma once
 #include "../Scene.h"
 #include "../manager/SceneID.h"
+#include "Game/LoadJsonFile/FileJson.h"
+#include <string>
 class GameScene : public Scene {
 public:
 	/// <summary>
@@ -36,4 +38,10 @@ public:
 
 private:
 	SceneID nextScene_;
+
+	// Csvデータ
+	std::vector<std::vector<int>> csvData_;
+
+	// Json読み書き用のファイルアクセサ
+	FileJson::FileAccessor* fileAccessor_;
 };

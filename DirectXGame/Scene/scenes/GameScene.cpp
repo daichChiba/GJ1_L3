@@ -1,15 +1,23 @@
 #include "GameScene.h"
 
+
 using namespace KamataEngine;
 GameScene::GameScene() {
 
 }
 
 GameScene::~GameScene() {
-
+	
 }
 
 void GameScene::Initialize() {
+
+	// FileAccessorの初期化
+	fileAccessor_ = nullptr;
+	// JSONファイル名を指定してFileAccessorを初期化 (相対パスを使用)
+	fileAccessor_ = new FileJson::FileAccessor("Resources/Json/Stage.json");
+
+	csvData_ = fileAccessor_->ReadCsvData(stage, ereaNum + "_" + stageNum);
 
 }
 
@@ -63,13 +71,18 @@ void GameScene::Draw() {
 }
 
 void GameScene::Delete() {
-
+	// FileAccessorの開放
+	if (fileAccessor_) {
+		delete fileAccessor_;
+		fileAccessor_ = nullptr;
+	}
 }
 
 void GameScene::DrawImGui() {
 	ImGui::Begin("GameScene");
 	ImGui::Text("Test");
 	ImGui::Checkbox("isFinished", &isFinish);
+	ImGui::Text("%d_%d", ereaNum, stageNum);
 	ImGui::End();
 }
 

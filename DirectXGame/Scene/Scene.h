@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
 #include "manager/SceneID.h"
+class SceneManager;
 class Scene {
 public:
 	virtual ~Scene() = default;
@@ -36,6 +37,15 @@ public:
 	// 追加：終了したら次に遷移するシーンID
 	virtual SceneID NextScene() const = 0;
 
+	// setter
+	void SetEreaNum(int num) { ereaNum = num; }
+	void SetStageNum(int num) { stageNum = num; }
+	void SetStage(std::string str) { stage = str; }
+
+	int GetEreaNum() { return ereaNum; }
+	int GetStageNum() { return stageNum; }
+	std::string GetStage() { return stage; }
+
 private:
 
 protected:
@@ -43,7 +53,11 @@ protected:
 	KamataEngine::Input* input_ = nullptr;
 	KamataEngine::Audio* audio_ = nullptr;
 
-	
+	//stageの数値と文字列
+	int ereaNum = 1;
+	int stageNum = 1;
+	std::string stage = "Tutorial";
+
 
 	bool isFinish;
 };
