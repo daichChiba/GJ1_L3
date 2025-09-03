@@ -3,6 +3,7 @@
 using namespace KamataEngine;
 GameScene::GameScene() {
 
+
 }
 
 GameScene::~GameScene() {
