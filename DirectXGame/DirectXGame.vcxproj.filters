@@ -31,6 +31,24 @@
     <Filter Include="ヘッダー ファイル\scene\scenes">
       <UniqueIdentifier>{d030ceb1-78a6-4113-bbb5-234f4de57f89}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\scene\manager">
+      <UniqueIdentifier>{54b6826a-96e0-48c9-a10b-9faf2e86c8b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene\manager">
+      <UniqueIdentifier>{8ad0a592-a851-4b8e-9fdd-ccfb0d800080}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game">
+      <UniqueIdentifier>{6b51a638-ee28-4071-9f20-de78b8b6f35f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game">
+      <UniqueIdentifier>{8b8fe4f4-c18f-457b-87df-172689078003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game\LoadJsonFile">
+      <UniqueIdentifier>{0efe39fb-4f49-4ee3-bef4-4554eb0ec75f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\LoadJsonFile">
+      <UniqueIdentifier>{b27d37bf-cb05-4e36-8f50-ad5d2b2a2ed8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,8 +69,11 @@
     <ClCompile Include="Scene\scenes\GameScene.cpp">
       <Filter>ソース ファイル\scene\scenes</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Game\LoadJsonFile\FileJson.cpp">
+      <Filter>ソース ファイル\Game\LoadJsonFile</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\manager\SceneManager.cpp">
+      <Filter>ソース ファイル\scene\manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,8 +135,14 @@
     <ClInclude Include="Scene\scenes\GameScene.h">
       <Filter>ヘッダー ファイル\scene\scenes</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Scene\manager\SceneManager.h">
+      <Filter>ヘッダー ファイル\scene\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\manager\SceneID.h">
+      <Filter>ヘッダー ファイル\scene\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\LoadJsonFile\FileJson.h">
+      <Filter>ヘッダー ファイル\Game\LoadJsonFile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
