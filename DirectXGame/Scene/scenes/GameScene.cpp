@@ -1,25 +1,43 @@
-#include "GameScene.h"
+#include "scene/scenes/GameScene.h"
 
 using namespace KamataEngine;
-GameScene::GameScene() {
 
-}
+GameScene::GameScene() {}
 
 GameScene::~GameScene() {
-
+	delete camera_;
+	camera_ = nullptr;
 }
 
 void GameScene::Initialize() {
 
+	Model::StaticInitialize();
+	// プレイヤーの初期化
+	player_.Initialize();
+
+	camera_ = new Camera();
+	camera_->Initialize();
+
+	// ポータル初期化
+	KamataEngine::Model* portalModel = KamataEngine::Model::CreateFromOBJ("player");
+
+	// CSVからポータル生成
+	portalManager_.LoadMapAndCreatePortals("Resources/Json/Stage.json", portalModel);
 }
 
 void GameScene::Update() {
+	player_.Update();
+
 	if (isFinish == true) {
 		nextScene_ = SceneID::Reset;
 	}
 }
 
 void GameScene::Draw() {
+
+	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
+	Sprite::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
+
 #pragma region 背景スプライト描画
 	// 背景スプライト描画前処理
 	Sprite::PreDraw();
@@ -41,8 +59,8 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-
-
+	portalManager_.Draw(camera_);
+	player_.Draw(*camera_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -50,7 +68,7 @@ void GameScene::Draw() {
 
 #pragma region 前景スプライト描画
 	// 前景スプライト描画前処理
-	Sprite::PreDraw();
+	Sprite::PreDraw(dxCommon->GetCommandList());
 
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
@@ -62,9 +80,7 @@ void GameScene::Draw() {
 #pragma endregion
 }
 
-void GameScene::Delete() {
-
-}
+void GameScene::Delete() {}
 
 void GameScene::DrawImGui() {
 	ImGui::Begin("GameScene");
@@ -73,6 +89,4 @@ void GameScene::DrawImGui() {
 	ImGui::End();
 }
 
-SceneID GameScene::NextScene() const {
-	return nextScene_;
-}
+SceneID GameScene::NextScene() const { return nextScene_; }

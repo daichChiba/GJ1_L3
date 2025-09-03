@@ -9,7 +9,7 @@ void Portal::SetPair(Portal* pair) { pair_ = pair; }
 
 Portal* Portal::GetPair() const { return pair_; }
 
-bool Portal::IsPlayerInside(const Vector3& playerPos) const {
+bool Portal::IsPlayerInside(const KamataEngine::Vector3& playerPos) const {
 	float dx = playerPos.x - position_.x;
 	float dy = playerPos.y - position_.y;
 	float dz = playerPos.z - position_.z;
@@ -27,6 +27,6 @@ void Portal::Initialize(KamataEngine::Model* model) {
 
 void Portal::Draw(Camera* camera) {
 	if (model_) {
-		model_->Draw(worldTransform_, camera);
+		model_->Draw(worldTransform_, *camera);
 	}
 }

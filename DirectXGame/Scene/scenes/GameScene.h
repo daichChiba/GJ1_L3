@@ -1,6 +1,10 @@
 #pragma once
 #include "../Scene.h"
 #include "../manager/SceneID.h"
+#include "KamataEngine.h"
+#include "Player.h"
+#include "PortalManager.h"
+
 class GameScene : public Scene {
 public:
 	/// <summary>
@@ -36,4 +40,9 @@ public:
 
 private:
 	SceneID nextScene_;
+
+	PortalManager portalManager_;
+
+	KamataEngine::Camera* camera_ = nullptr;
+	Player player_;
 };

@@ -9,7 +9,7 @@
 class PortalManager {
 public:
 	void LoadMapAndCreatePortals(const std::string& filePath, KamataEngine::Model* portalModel);
-	void Draw(Camera* camera);
+	void Draw(KamataEngine::Camera* camera);
 	const std::vector<Portal*>& GetPortals() const { return portals_; }
 
 private:
