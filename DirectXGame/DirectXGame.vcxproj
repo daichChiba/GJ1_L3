@@ -157,6 +157,8 @@
     <ClCompile Include="ect\MathUtilityEX.cpp" />
     <ClCompile Include="ect\worldTransfromEX.cpp" />
     <ClCompile Include="Game\LoadJsonFile\FileJson.cpp" />
+    <ClCompile Include="Portal.cpp" />
+    <ClCompile Include="PortalManager.cpp" />
     <ClCompile Include="Scene\manager\SceneManager.cpp" />
     <ClCompile Include="Scene\scenes\GameScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -262,6 +264,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\LoadJsonFile\FileJson.h" />
+    <ClInclude Include="Portal.h" />
+    <ClInclude Include="PortalManager.h" />
     <ClInclude Include="Scene\manager\SceneID.h" />
     <ClInclude Include="Scene\manager\SceneManager.h" />
     <ClInclude Include="Scene\scenes\GameScene.h" />
