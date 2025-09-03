@@ -1,5 +1,8 @@
 #pragma once
-#include "../Scene.h"
+#include "scene/Scene.h"
+#include "Player.h"
+#include "KamataEngine.h"
+
 class GameScene : public Scene {
 public:
 	/// <summary>
@@ -30,4 +33,9 @@ public:
 	/// ImGui描画
 	/// </summary>
 	void DrawImGui() override;
+
+private:
+
+	KamataEngine::Camera* camera_ = nullptr;
+	Player player_;
 };

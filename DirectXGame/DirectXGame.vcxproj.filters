@@ -51,6 +51,9 @@
     <ClCompile Include="Scene\scenes\GameScene.cpp">
       <Filter>ソース ファイル\scene\scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\SpritePS.hlsl">
@@ -110,6 +113,9 @@
     </ClInclude>
     <ClInclude Include="Scene\scenes\GameScene.h">
       <Filter>ヘッダー ファイル\scene\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,23 +1,32 @@
-#include "GameScene.h"
+#include "scene/scenes/GameScene.h"
 
 using namespace KamataEngine;
-GameScene::GameScene() {
 
-}
+GameScene::GameScene() {}
 
 GameScene::~GameScene() {
-
+	delete camera_;
+	camera_ = nullptr;
 }
 
 void GameScene::Initialize() {
 
+	Model::StaticInitialize();
+	// プレイヤーの初期化
+	player_.Initialize();
+
+	camera_ = new Camera();
+	camera_->Initialize();
+
 }
 
-void GameScene::Update() {
-
-}
+void GameScene::Update() { player_.Update(); }
 
 void GameScene::Draw() {
+
+	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
+	Sprite::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
+
 #pragma region 背景スプライト描画
 	// 背景スプライト描画前処理
 	Sprite::PreDraw();
@@ -29,7 +38,7 @@ void GameScene::Draw() {
 	// スプライト描画後処理
 	Sprite::PostDraw();
 	// 深度バッファクリア
-	dxCommon_->ClearDepthBuffer();
+	dxCommon->ClearDepthBuffer();
 #pragma endregion
 
 #pragma region 3Dオブジェクト描画
@@ -38,9 +47,8 @@ void GameScene::Draw() {
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
+	player_.Draw(*camera_);
 	/// </summary>
-
-
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -48,7 +56,7 @@ void GameScene::Draw() {
 
 #pragma region 前景スプライト描画
 	// 前景スプライト描画前処理
-	Sprite::PreDraw();
+	Sprite::PreDraw(dxCommon->GetCommandList());
 
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
@@ -60,9 +68,7 @@ void GameScene::Draw() {
 #pragma endregion
 }
 
-void GameScene::Delete() {
-
-}
+void GameScene::Delete() {}
 
 void GameScene::DrawImGui() {
 	ImGui::Begin("GameScene");
