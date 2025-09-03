@@ -7,7 +7,7 @@
 class SceneManager {
 public:
 	SceneManager() = default;
-	virtual ~SceneManager() = default;
+	~SceneManager() = default;
 
 	/// <summary>
 	/// シーン切り替え（現在のシーンを破棄して新しいシーンを生成）

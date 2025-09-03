@@ -31,7 +31,7 @@ void SceneManager::Update() {
 
 	// シーン終了が指示されたら、ゲーム <-> リセットを交互に切替
 	if (currentScene_->IsFinish()) {
-		SceneID next = (currentSceneID_ == SceneID::Game) ? SceneID::Reset : SceneID::Game;
+		SceneID next = currentScene_->NextScene();
 		ChangeScene(next);
 	}
 }
