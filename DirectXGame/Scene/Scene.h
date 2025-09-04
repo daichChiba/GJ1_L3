@@ -37,13 +37,10 @@ public:
 	virtual SceneID NextScene() const = 0;
 
 private:
-
 protected:
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
 	KamataEngine::Input* input_ = nullptr;
 	KamataEngine::Audio* audio_ = nullptr;
-
-	
 
 	bool isFinish;
 };

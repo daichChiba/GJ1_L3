@@ -1,34 +1,24 @@
 #include "ResetScene.h"
 
-ResetScene::ResetScene() {
+ResetScene::ResetScene() {}
 
-}
+ResetScene::~ResetScene() {}
 
-ResetScene::~ResetScene() {
-
-}
-
-void ResetScene::Initialize() {
-
-}
+void ResetScene::Initialize() {}
 
 void ResetScene::Update() {
 	if (input_->GetInstance()->PushKey(DIK_SPACE)) {
 		isFinish = true;
 	}
 
-	if (isFinish==true) {
+	if (isFinish == true) {
 		nextScene_ = SceneID::Game;
 	}
 }
 
-void ResetScene::Draw() {
+void ResetScene::Draw() {}
 
-}
-
-void ResetScene::Delete() {
-
-}
+void ResetScene::Delete() {}
 
 void ResetScene::DrawImGui() {
 	ImGui::Begin("ResetScene");
@@ -37,6 +27,4 @@ void ResetScene::DrawImGui() {
 	ImGui::End();
 }
 
-SceneID ResetScene::NextScene() const {
-	return nextScene_;
-}
+SceneID ResetScene::NextScene() const { return nextScene_; }

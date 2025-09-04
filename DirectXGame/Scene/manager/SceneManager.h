@@ -1,7 +1,7 @@
 #pragma once
+#include "Scene/manager/SceneID.h"
 #include "Scene/scenes/GameScene.h"
 #include "Scene/scenes/ResetScene.h"
-#include "Scene/manager/SceneID.h"
 #include <KamataEngine.h>
 #include <map>
 class SceneManager {
