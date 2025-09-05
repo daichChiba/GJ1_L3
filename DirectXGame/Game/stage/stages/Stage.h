@@ -1,6 +1,6 @@
 #pragma once
 #include "Game/LoadJsonFile/FileJson.h"
-#include "StageID.h"
+#include "../StageID.h"
 #include <KamataEngine.h>
 #include <base/DirectXCommon.h>
 #include <math/Vector3.h>
