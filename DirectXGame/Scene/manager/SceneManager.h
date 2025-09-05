@@ -1,7 +1,7 @@
 #pragma once
+#include "Scene/manager/SceneID.h"
 #include "Scene/scenes/GameScene.h"
 #include "Scene/scenes/ResetScene.h"
-#include "Scene/manager/SceneID.h"
 #include <KamataEngine.h>
 #include <map>
 class SceneManager {
@@ -28,10 +28,10 @@ public:
 	/// </summary>
 	void DrawImGui();
 
-	// setter
-	void SetEreaNum(int num) { ereaNum = num; }
-	void SetStageNum(int num) { stageNum = num; }
-	void SetStage(std::string str) { stage = str; }
+private:
+	void SetNum();
+
+	void GetNum();
 
 private:
 	std::unique_ptr<Scene> currentScene_;
