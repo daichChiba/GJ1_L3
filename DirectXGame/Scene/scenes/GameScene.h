@@ -50,7 +50,6 @@ private:
 
 	// ステージマネージャー
 	StageManager* stageManager_;
-	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
 
 	// Csvデータ
 	std::vector<std::vector<int>> csvData_;

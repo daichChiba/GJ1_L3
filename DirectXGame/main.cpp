@@ -1,7 +1,7 @@
-#include "Scene/manager/SceneManager.h"
 #include "Scene/manager/SceneID.h"
-#include <Windows.h>
+#include "Scene/manager/SceneManager.h"
 #include <KamataEngine.h>
+#include <Windows.h>
 #include <map>
 
 using namespace KamataEngine;
@@ -16,7 +16,6 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	// シーンマネージャー
 	SceneManager sceneManager_;
 	sceneManager_.ChangeScene(SceneID::Reset); // 最初は GameScene
-
 
 #pragma region 汎用機能初期化
 	// ImGuiManagerインスタンスの取得
@@ -55,9 +54,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 		// 描画終了
 		dxCommon->PostDraw();
-
 	}
-
 
 	// エンジンの終了処理
 	Finalize();

@@ -58,7 +58,7 @@ private: // 変数
 	KamataEngine::Model* BlockModel_;
 
 	// ワールドトランスフォーム
-	//KamataEngine::WorldTransform* worldTransform_;
-
 	std::vector<std::vector<WorldTransform>> worldTransform_;
+
+	KamataEngine::Camera* camera;
 };
