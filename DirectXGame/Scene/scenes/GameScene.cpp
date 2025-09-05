@@ -20,24 +20,28 @@ void GameScene::Initialize() {
 	camera_ = new Camera();
 	camera_->Initialize();
 
-	//// ポータル初期化
-	// KamataEngine::Model* portalModel = KamataEngine::Model::CreateFromOBJ("player");
-
-	//// CSVからポータル生成
-	// portalManager_.LoadMapAndCreatePortals("Resources/Json/Stage.json", portalModel);
-
 	// ステージマネージャー初期化
 	stageManager_ = new StageManager();
-	stageManager_->Load("Resources/Json/Stage.json");
-	worldTransformBlocks_ = stageManager_->GenerateBlockTransforms(StageType::kBlock);
-	modelBlock_ = Model::CreateFromOBJ("cube", true);
+	stageManager_->Initialize(ereaNum, stageNum, stage);
 }
 
 void GameScene::Update() {
 	player_.Update();
 
+	stageManager_->Update();
+
 	if (isFinish == true) {
 		nextScene_ = SceneID::Reset;
+		if (isClear == false) {
+			if (is1stPortalThrough == false) {
+				is1stPortalThrough = true;
+			} else if (is2ndPortalThrough == false) {
+				is2ndPortalThrough = true;
+			}
+			if (isGoal == true) {
+				isClear = true;
+			}
+		}
 	}
 }
 
@@ -70,12 +74,7 @@ void GameScene::Draw() {
 	portalManager_.Draw(camera_);
 	player_.Draw(*camera_);
 
-	for (auto& line : worldTransformBlocks_) {
-		for (WorldTransform* block : line) {
-			if (block)
-				modelBlock_->Draw(*block, *camera_);
-		}
-	}
+	stageManager_->Draw(camera_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -95,12 +94,20 @@ void GameScene::Draw() {
 #pragma endregion
 }
 
-void GameScene::Delete() {}
+void GameScene::Delete() {
+	// FileAccessorの開放
+	if (fileAccessor_) {
+		delete fileAccessor_;
+		fileAccessor_ = nullptr;
+	}
+}
 
 void GameScene::DrawImGui() {
 	ImGui::Begin("GameScene");
 	ImGui::Text("Test");
 	ImGui::Checkbox("isFinished", &isFinish);
+	ImGui::Text("%d_%d", ereaNum, stageNum);
+	ImGui::Checkbox("isGoal", &isGoal);
 	ImGui::End();
 }
 

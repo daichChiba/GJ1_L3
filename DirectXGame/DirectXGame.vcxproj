@@ -276,6 +276,7 @@
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\scenes\ResetScene.h" />
     <ClInclude Include="Stage.h" />
+    <ClInclude Include="StageID.h" />
     <ClInclude Include="StageManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

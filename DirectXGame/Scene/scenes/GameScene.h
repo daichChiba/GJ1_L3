@@ -51,12 +51,16 @@ private:
 	// ステージマネージャー
 	StageManager* stageManager_;
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
-	// ブロックのモデルを読み込む
-	KamataEngine::Model* modelBlock_ = 0;
 
 	// Csvデータ
 	std::vector<std::vector<int>> csvData_;
 
 	// Json読み書き用のファイルアクセサ
 	FileJson::FileAccessor* fileAccessor_;
+
+	int ereaNum = 1;
+	int stageNum = 1;
+	std::string stage = "Tutorial";
+
+	bool isGoal = false;
 };

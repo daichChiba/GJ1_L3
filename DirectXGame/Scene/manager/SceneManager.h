@@ -29,6 +29,19 @@ public:
 	void DrawImGui();
 
 private:
+	void SetInformation();
+
+	void GetInformation();
+
+private:
 	std::unique_ptr<Scene> currentScene_;
 	SceneID currentSceneID_;
+
+	int ereaNum = 1;
+	int stageNum = 1;
+	std::string stage = "Tutorial";
+
+	bool isClear = true;
+	bool is1stPortalThrough = false;
+	bool is2ndPortalThrough = false;
 };
