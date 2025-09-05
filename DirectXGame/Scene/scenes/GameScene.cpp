@@ -18,6 +18,7 @@ void GameScene::Initialize() {
 	player_.Initialize();
 
 	camera_ = new Camera();
+	camera_->translation_.z = player_.GetWorldTransform().translation_.z;
 	camera_->Initialize();
 
 	// ステージマネージャー初期化
@@ -108,6 +109,8 @@ void GameScene::DrawImGui() {
 	ImGui::Checkbox("isFinished", &isFinish);
 	ImGui::Text("%d_%d", ereaNum, stageNum);
 	ImGui::Checkbox("isGoal", &isGoal);
+	ImGui::DragFloat3("transform", &camera_->translation_.x, 0.01f);
+	player_.DrawImGui();
 	ImGui::End();
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "Game/LoadJsonFile/FileJson.h"
 #include "KamataEngine.h"
-#include "Stage.h"
+#include "stages/Stage.h"
 #include "StageID.h"
 
 class StageManager {

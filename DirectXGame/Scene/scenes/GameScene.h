@@ -3,9 +3,9 @@
 #include "../manager/SceneID.h"
 #include "Game/LoadJsonFile/FileJson.h"
 #include "KamataEngine.h"
-#include "Player.h"
-#include "PortalManager.h"
-#include "StageManager.h"
+#include "../../Game/Player/Player.h"
+#include "../../Game/stage/stages/stageBlock/PortalManager.h"
+#include "../../Game/stage/StageManager.h"
 
 class GameScene : public Scene {
 public:

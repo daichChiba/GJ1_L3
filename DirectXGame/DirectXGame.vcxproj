@@ -157,16 +157,16 @@
     <ClCompile Include="ect\MathUtilityEX.cpp" />
     <ClCompile Include="ect\worldTransfromEX.cpp" />
     <ClCompile Include="Game\LoadJsonFile\FileJson.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Portal.cpp" />
-    <ClCompile Include="PortalManager.cpp" />
+    <ClCompile Include="Game\Player\Player.cpp" />
+    <ClCompile Include="Game\stage\stages\stageBlock\portal\Portal.cpp" />
+    <ClCompile Include="Game\stage\stages\stageBlock\PortalManager.cpp" />
     <ClCompile Include="Scene\manager\SceneManager.cpp" />
     <ClCompile Include="Scene\scenes\GameScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Scene\scenes\ResetScene.cpp" />
-    <ClCompile Include="Stage.cpp" />
-    <ClCompile Include="StageManager.cpp" />
+    <ClCompile Include="Game\stage\stages\Stage.cpp" />
+    <ClCompile Include="Game\stage\StageManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
@@ -267,17 +267,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\LoadJsonFile\FileJson.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Portal.h" />
-    <ClInclude Include="PortalManager.h" />
+    <ClInclude Include="Game\Player\Player.h" />
+    <ClInclude Include="Game\stage\stages\stageBlock\portal\Portal.h" />
+    <ClInclude Include="Game\stage\stages\stageBlock\PortalManager.h" />
     <ClInclude Include="Scene\manager\SceneID.h" />
     <ClInclude Include="Scene\manager\SceneManager.h" />
     <ClInclude Include="Scene\scenes\GameScene.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\scenes\ResetScene.h" />
-    <ClInclude Include="Stage.h" />
-    <ClInclude Include="StageID.h" />
-    <ClInclude Include="StageManager.h" />
+    <ClInclude Include="Game\stage\stages\Stage.h" />
+    <ClInclude Include="Game\stage\StageID.h" />
+    <ClInclude Include="Game\stage\StageManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

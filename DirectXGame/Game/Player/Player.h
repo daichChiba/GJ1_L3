@@ -6,6 +6,9 @@ public:
 	void Initialize();
 	void Update();
 	void Draw(const KamataEngine::Camera& camera);
+	void DrawImGui();
+
+	KamataEngine::WorldTransform& GetWorldTransform() {return worldTransform_; }
 
 private:
 	KamataEngine::Model* model_ = nullptr;

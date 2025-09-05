@@ -97,3 +97,7 @@ void Player::Draw(const Camera& camera) {
 		model_->Draw(worldTransform_, camera);
 	}
 }
+
+void Player::DrawImGui() {
+	ImGui::DragFloat3("transform", &worldTransform_.translation_.x, 0.01f);
+}

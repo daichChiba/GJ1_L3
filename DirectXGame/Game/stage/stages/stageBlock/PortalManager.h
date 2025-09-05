@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Portal.h"
+#include "portal/Portal.h"
 #include <3d/Camera.h>
 #include <3d/Model.h>
 #include <string>
