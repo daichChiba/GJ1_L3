@@ -41,9 +41,7 @@ StageType Stage::GetMapchipTypeByIndex(uint32_t xIndex, uint32_t yIndex) {
 	return StageData_.data[yIndex][xIndex];
 }
 
-Vector3 Stage::GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex) { // return Vector3();
-	return Vector3(kBlockWidth * xIndex, kBlockHeight * (kNumBlockVirtical - 1 - yIndex), 0);
-}
+Vector3 Stage::GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex) { return Vector3(kBlockWidth * xIndex, kBlockHeight * (kNumBlockVirtical - 1 - yIndex), 0); }
 
 Stage::IndexSet Stage::GetMapChipIndexSetByPosition(const Vector3& position) {
 
