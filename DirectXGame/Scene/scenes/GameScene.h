@@ -1,9 +1,11 @@
 #pragma once
 #include "../Scene.h"
 #include "../manager/SceneID.h"
+#include "Game/LoadJsonFile/FileJson.h"
 #include "KamataEngine.h"
 #include "Player.h"
 #include "PortalManager.h"
+#include "StageManager.h"
 
 class GameScene : public Scene {
 public:
@@ -45,4 +47,16 @@ private:
 
 	KamataEngine::Camera* camera_ = nullptr;
 	Player player_;
+
+	// ステージマネージャー
+	StageManager* stageManager_;
+	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
+	// ブロックのモデルを読み込む
+	KamataEngine::Model* modelBlock_ = 0;
+
+	// Csvデータ
+	std::vector<std::vector<int>> csvData_;
+
+	// Json読み書き用のファイルアクセサ
+	FileJson::FileAccessor* fileAccessor_;
 };

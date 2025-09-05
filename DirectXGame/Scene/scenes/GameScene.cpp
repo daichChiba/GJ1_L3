@@ -7,6 +7,8 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 	delete camera_;
 	camera_ = nullptr;
+
+	delete stageManager_;
 }
 
 void GameScene::Initialize() {
@@ -18,11 +20,17 @@ void GameScene::Initialize() {
 	camera_ = new Camera();
 	camera_->Initialize();
 
-	// ポータル初期化
-	KamataEngine::Model* portalModel = KamataEngine::Model::CreateFromOBJ("player");
+	//// ポータル初期化
+	// KamataEngine::Model* portalModel = KamataEngine::Model::CreateFromOBJ("player");
 
-	// CSVからポータル生成
-	portalManager_.LoadMapAndCreatePortals("Resources/Json/Stage.json", portalModel);
+	//// CSVからポータル生成
+	// portalManager_.LoadMapAndCreatePortals("Resources/Json/Stage.json", portalModel);
+
+	// ステージマネージャー初期化
+	stageManager_ = new StageManager();
+	stageManager_->Load("Resources/Json/Stage.json");
+	worldTransformBlocks_ = stageManager_->GenerateBlockTransforms(StageType::kBlock);
+	modelBlock_ = Model::CreateFromOBJ("cube", true);
 }
 
 void GameScene::Update() {
@@ -61,6 +69,13 @@ void GameScene::Draw() {
 	/// </summary>
 	portalManager_.Draw(camera_);
 	player_.Draw(*camera_);
+
+	for (auto& line : worldTransformBlocks_) {
+		for (WorldTransform* block : line) {
+			if (block)
+				modelBlock_->Draw(*block, *camera_);
+		}
+	}
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

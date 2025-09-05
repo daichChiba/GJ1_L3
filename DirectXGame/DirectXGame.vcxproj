@@ -165,6 +165,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Scene\scenes\ResetScene.cpp" />
+    <ClCompile Include="Stage.cpp" />
+    <ClCompile Include="StageManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
@@ -273,6 +275,8 @@
     <ClInclude Include="Scene\scenes\GameScene.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\scenes\ResetScene.h" />
+    <ClInclude Include="Stage.h" />
+    <ClInclude Include="StageManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
