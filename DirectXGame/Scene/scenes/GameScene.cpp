@@ -24,6 +24,16 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 	if (isFinish == true) {
 		nextScene_ = SceneID::Reset;
+		if (isClear==false) {
+			if (is1stPortalThrough==false) {
+				is1stPortalThrough = true;
+			} else if (is2ndPortalThrough==false) {
+				is2ndPortalThrough = true;
+			}
+			if (isGoal==true) {
+				isClear = true;
+			}
+		}
 	}
 }
 
@@ -83,6 +93,7 @@ void GameScene::DrawImGui() {
 	ImGui::Text("Test");
 	ImGui::Checkbox("isFinished", &isFinish);
 	ImGui::Text("%d_%d", ereaNum, stageNum);
+	ImGui::Checkbox("isGoal", &isGoal);
 	ImGui::End();
 }
 

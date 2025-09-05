@@ -12,15 +12,14 @@ void SceneManager::ChangeScene(SceneID nextScene) {
 	switch (nextScene) {
 	case SceneID::Game:
 		currentScene_ = std::make_unique<GameScene>();
-		SetNum();
+		SetInformation();
 
 		break;
 	case SceneID::Reset:
 		currentScene_ = std::make_unique<ResetScene>();
-		SetNum();
+		SetInformation();
 		break;
 	}
-
 
 	currentSceneID_ = nextScene;
 
@@ -36,7 +35,7 @@ void SceneManager::Update() {
 	// シーン終了が指示されたら、ゲーム <-> リセットを交互に切替
 	if (currentScene_->IsFinish()) {
 		SceneID next = currentScene_->NextScene();
-		GetNum();
+		GetInformation();
 		ChangeScene(next);
 	}
 }
@@ -53,15 +52,23 @@ void SceneManager::DrawImGui() {
 	}
 }
 
-void SceneManager::SetNum() {
+void SceneManager::SetInformation() {
 	// stageの数値と文字列を引き継ぐ
 	currentScene_->SetStageNum(stageNum);
 	currentScene_->SetEreaNum(ereaNum);
 	currentScene_->SetStage(stage);
+
+	currentScene_->SetIsCrear(isClear);
+	currentScene_->SetIs1stPortalThrough(is1stPortalThrough);
+	currentScene_->SetIs2ndPortalThrough(is2ndPortalThrough);
 }
 
-void SceneManager::GetNum() {
+void SceneManager::GetInformation() {
 	stageNum = currentScene_->GetStageNum();
 	ereaNum = currentScene_->GetEreaNum();
 	stage = currentScene_->GetStage();
+
+	isClear = currentScene_->GetIsClear();
+	is1stPortalThrough = currentScene_->GetIs1stPortalThrough();
+	is2ndPortalThrough = currentScene_->GetIs2ndPortalThrough();
 }

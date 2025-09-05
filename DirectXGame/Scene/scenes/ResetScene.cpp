@@ -13,11 +13,25 @@ void ResetScene::Initialize() {
 }
 
 void ResetScene::Update() {
-	if (input_->GetInstance()->PushKey(DIK_SPACE)) {
+
+	if (isClear==false) {
 		isFinish = true;
+		if (is1stPortalThrough==true&&is2ndPortalThrough==false) {
+			stageNum += 1;
+		} else if (is1stPortalThrough == true && is2ndPortalThrough == true) {
+			stageNum += 1;
+		}
+	} else {
+		if (input_->GetInstance()->PushKey(DIK_SPACE)) {
+			isFinish = true;
+		}
+		is1stPortalThrough = false;
+		is2ndPortalThrough = false;
+		stageNum = 1;
 	}
 
 	if (isFinish==true) {
+		isClear = false;
 		nextScene_ = SceneID::Game;
 	}
 	if (ereaNum==1) {

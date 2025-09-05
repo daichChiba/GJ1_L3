@@ -44,4 +44,6 @@ private:
 
 	// Json読み書き用のファイルアクセサ
 	FileJson::FileAccessor* fileAccessor_;
+
+	bool isGoal = false;
 };
