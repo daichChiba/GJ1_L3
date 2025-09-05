@@ -17,7 +17,7 @@ std::map<std::string, StageType> mapChipTable = {
 }
 
 void Stage::Initialize(int ereaNum_, int stageNum_, std::string stage_) {
-	BlockModel_ = Model::CreateFromOBJ("cube");
+	BlockModel_ = Model::CreateFromOBJ("block");
 
 	// FileAccessorの初期化
 	fileAccessor_ = nullptr;
@@ -42,7 +42,7 @@ void Stage::Initialize(int ereaNum_, int stageNum_, std::string stage_) {
 			} else {
 				StageData_.data[y][x] = static_cast<StageType>(csvData_[y][x]);
 			}
-			Vector3 BlockPos = {0.1f * x, 0.1f * y, 0};
+			Vector3 BlockPos = {1.0f * x, 1.0f * y, 0};
 
 			worldTransform_[y][x].translation_ = BlockPos;
 			worldTransform_[y][x].Initialize();
@@ -61,7 +61,9 @@ void Stage::Update() {
 void Stage::Draw(KamataEngine::Camera* camera_) {
 	for (uint32_t y = 0; y < csvData_.size(); y++) {
 		for (uint32_t x = 0; x < csvData_[y].size(); x++) {
-			BlockModel_->Draw(worldTransform_[y][x], *camera_);
+			if (StageData_.data[y][x] == StageType::kBlock) {
+				BlockModel_->Draw(worldTransform_[y][x], *camera_);
+			}
 		}
 	}
 }

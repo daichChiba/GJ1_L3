@@ -31,7 +31,8 @@ public:
 
 	WorldTransform() = default;
 	~WorldTransform() = default;
-
+	WorldTransform(WorldTransform&&) = default;
+	WorldTransform& operator=(WorldTransform&&) = default;
 	/// <summary>
 	/// 初期化
 	/// </summary>
