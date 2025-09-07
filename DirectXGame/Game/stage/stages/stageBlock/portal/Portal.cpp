@@ -19,6 +19,10 @@ std::map<std::string, StageType> mapChipTable = {
 void Portal::Initialize(int ereaNum_, int stageNum_, std::string stage_) {
 	BlockModel_ = Model::CreateFromOBJ("block");
 
+	objectColor_ = new ObjectColor();
+	objectColor_->Initialize();
+	objectColor_->SetColor({1.0f, 0.0f, 0.0f, 1.0f});
+
 	// FileAccessorの初期化
 	fileAccessor_ = nullptr;
 	// JSONファイル名を指定してFileAccessorを初期化 (相対パスを使用)
@@ -64,10 +68,10 @@ void Portal::Draw(KamataEngine::Camera* camera_) {
 	for (uint32_t y = 0; y < csvData_.size(); y++) {
 		for (uint32_t x = 0; x < csvData_[y].size(); x++) {
 			if (PortalData_.data[y][x] == StageType::kEntrancePortal) {
-				BlockModel_->Draw(worldTransform_[y][x], *camera_);
+				BlockModel_->Draw(worldTransform_[y][x], *camera_,objectColor_);
 			}
 			if (PortalData_.data[y][x] == StageType::kExitPortal) {
-				BlockModel_->Draw(worldTransform_[y][x], *camera_);
+				BlockModel_->Draw(worldTransform_[y][x], *camera_,objectColor_);
 			}
 		}
 	}

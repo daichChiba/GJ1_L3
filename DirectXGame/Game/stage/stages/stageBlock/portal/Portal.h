@@ -2,8 +2,7 @@
 #include "Game/LoadJsonFile/FileJson.h"
 #include "Game/stage/StageID.h"
 #include <KamataEngine.h>
-#include <base/DirectXCommon.h>
-#include <math/Vector3.h>
+
 
 using namespace KamataEngine;
 
@@ -39,4 +38,6 @@ private: // 変数
 	std::vector<std::vector<WorldTransform>> worldTransform_;
 
 	KamataEngine::Camera* camera;
+
+	KamataEngine::ObjectColor* objectColor_;
 };
