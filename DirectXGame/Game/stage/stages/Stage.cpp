@@ -42,7 +42,7 @@ void Stage::Initialize(int ereaNum_, int stageNum_, std::string stage_) {
 			} else {
 				StageData_.data[y][x] = static_cast<StageType>(csvData_[y][x]);
 			}
-			Vector3 BlockPos = {1.0f * x, 1.0f * y, 0};
+			Vector3 BlockPos = {1.0f * x, 1.0f * (csvData_.size() - 1 - y), 0};
 
 			worldTransform_[y][x].translation_ = BlockPos;
 			worldTransform_[y][x].Initialize();
