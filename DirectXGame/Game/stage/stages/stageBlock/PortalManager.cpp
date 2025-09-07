@@ -2,10 +2,11 @@
 
 using namespace KamataEngine;
 
-void PortalManager::Initialize(int ereaNum_, int stageNum_, std::string stage_) {
+void PortalManager::Initialize( std::vector<std::vector<StageType>> data) {
+	data_ = data;
 
 	portal_ = new Portal();
-	portal_->Initialize(ereaNum_, stageNum_, stage_);
+	portal_->Initialize(data_);
 }
 
 void PortalManager::Update() { portal_->Update(); }

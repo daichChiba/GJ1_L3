@@ -14,7 +14,7 @@ public:
 	void Draw(KamataEngine::Camera* camera_);
 
 	// getter
-	std::vector<std::vector<StageType>> GetData() { Stage_->GetData(); }
+	std::vector<std::vector<StageType>> GetData() {return Stage_->GetData(); }
 
 private:
 	// Csvデータ

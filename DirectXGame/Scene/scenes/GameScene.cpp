@@ -28,7 +28,7 @@ void GameScene::Initialize() {
 
 	// ポータルマネージャー初期化
 	portalManager_ = new PortalManager();
-	portalManager_->Initialize(ereaNum, stageNum, stage);
+	portalManager_->Initialize(stageManager_->GetData());
 }
 
 void GameScene::Update() {

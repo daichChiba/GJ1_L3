@@ -7,18 +7,18 @@
 class PortalManager {
 
 public:
-	void Initialize(int ereaNum_, int stageNum_, std::string stage_);
+	void Initialize( std::vector<std::vector<StageType>> data);
 
 	void Update();
 
 	void Draw(KamataEngine::Camera* camera_);
 
-	// getter
-	std::vector<std::vector<StageType>> GetData() { portal_->GetData(); }
 
 private:
 	// Csvデータ
 	std::vector<std::vector<int>> csvData_;
+
+	std::vector<std::vector<StageType>> data_;
 
 	Portal* portal_;
 };
