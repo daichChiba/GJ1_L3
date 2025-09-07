@@ -53,7 +53,6 @@ void GameScene::Update() {
 	}
 }
 
-void GameScene::Update() { player_.Update(); }
 
 void GameScene::Draw() {
 
