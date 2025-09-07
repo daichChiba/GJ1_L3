@@ -25,12 +25,18 @@ void GameScene::Initialize() {
 	// ステージマネージャー初期化
 	stageManager_ = new StageManager();
 	stageManager_->Initialize(ereaNum, stageNum, stage);
+
+	// ポータルマネージャー初期化
+	portalManager_ = new PortalManager();
+	portalManager_->Initialize(ereaNum, stageNum, stage);
 }
 
 void GameScene::Update() {
 	player_.Update();
 
 	stageManager_->Update();
+
+	portalManager_->Update();
 
 	if (isFinish == true) {
 		nextScene_ = SceneID::Reset;
@@ -73,7 +79,9 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-	portalManager_.Draw(camera_);
+
+	portalManager_->Draw(camera_);
+
 	player_.Draw(*camera_);
 
 	stageManager_->Draw(camera_);

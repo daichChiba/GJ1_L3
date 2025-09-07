@@ -43,7 +43,7 @@ public:
 private:
 	SceneID nextScene_;
 
-	PortalManager portalManager_;
+	PortalManager* portalManager_;
 
 	KamataEngine::Camera* camera_ = nullptr;
 	Player player_;

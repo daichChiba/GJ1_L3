@@ -75,19 +75,19 @@
     <ClCompile Include="Scene\manager\SceneManager.cpp">
       <Filter>ソース ファイル\scene\manager</Filter>
     </ClCompile>
-    <ClCompile Include="Portal.cpp">
+    <ClCompile Include="Game\Player\Player.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="PortalManager.cpp">
+    <ClCompile Include="Game\stage\stages\stageBlock\portal\Portal.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="Game\stage\stages\stageBlock\PortalManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Stage.cpp">
+    <ClCompile Include="Game\stage\stages\Stage.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="StageManager.cpp">
+    <ClCompile Include="Game\stage\StageManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -160,19 +160,22 @@
     <ClInclude Include="Game\LoadJsonFile\FileJson.h">
       <Filter>ヘッダー ファイル\Game\LoadJsonFile</Filter>
     </ClInclude>
-    <ClInclude Include="Portal.h">
+    <ClInclude Include="Game\Player\Player.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PortalManager.h">
+    <ClInclude Include="Game\stage\stages\stageBlock\portal\Portal.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="Game\stage\stages\stageBlock\PortalManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Stage.h">
+    <ClInclude Include="Game\stage\stages\Stage.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StageManager.h">
+    <ClInclude Include="Game\stage\StageID.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\stage\StageManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
