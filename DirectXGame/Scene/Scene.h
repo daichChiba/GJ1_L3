@@ -55,6 +55,7 @@ public:
 
 private:
 
+private:
 protected:
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
 	KamataEngine::Input* input_ = nullptr;

@@ -1,36 +1,46 @@
-#include "GameScene.h"
+#include "scene/scenes/GameScene.h"
 
 
 using namespace KamataEngine;
-GameScene::GameScene() {
 
-}
+GameScene::GameScene() {}
 
 GameScene::~GameScene() {
-	
+	delete camera_;
+	camera_ = nullptr;
+
+	delete stageManager_;
 }
 
 void GameScene::Initialize() {
 
-	// FileAccessorの初期化
-	fileAccessor_ = nullptr;
-	// JSONファイル名を指定してFileAccessorを初期化 (相対パスを使用)
-	fileAccessor_ = new FileJson::FileAccessor("Resources/Json/Stage.json");
+	Model::StaticInitialize();
+	// プレイヤーの初期化
+	player_.Initialize();
 
-	csvData_ = fileAccessor_->ReadCsvData(stage, ereaNum + "_" + stageNum);
+	camera_ = new Camera();
+	camera_->translation_.z = player_.GetWorldTransform().translation_.z;
+	camera_->Initialize();
 
+	// ステージマネージャー初期化
+	stageManager_ = new StageManager();
+	stageManager_->Initialize(ereaNum, stageNum, stage);
 }
 
 void GameScene::Update() {
+	player_.Update();
+
+	stageManager_->Update();
+
 	if (isFinish == true) {
 		nextScene_ = SceneID::Reset;
-		if (isClear==false) {
-			if (is1stPortalThrough==false) {
+		if (isClear == false) {
+			if (is1stPortalThrough == false) {
 				is1stPortalThrough = true;
-			} else if (is2ndPortalThrough==false) {
+			} else if (is2ndPortalThrough == false) {
 				is2ndPortalThrough = true;
 			}
-			if (isGoal==true) {
+			if (isGoal == true) {
 				isClear = true;
 			}
 		}
@@ -38,6 +48,10 @@ void GameScene::Update() {
 }
 
 void GameScene::Draw() {
+
+	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
+	Sprite::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
+
 #pragma region 背景スプライト描画
 	// 背景スプライト描画前処理
 	Sprite::PreDraw();
@@ -59,8 +73,10 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+	portalManager_.Draw(camera_);
+	player_.Draw(*camera_);
 
-
+	stageManager_->Draw(camera_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -68,7 +84,7 @@ void GameScene::Draw() {
 
 #pragma region 前景スプライト描画
 	// 前景スプライト描画前処理
-	Sprite::PreDraw();
+	Sprite::PreDraw(dxCommon->GetCommandList());
 
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
@@ -94,9 +110,9 @@ void GameScene::DrawImGui() {
 	ImGui::Checkbox("isFinished", &isFinish);
 	ImGui::Text("%d_%d", ereaNum, stageNum);
 	ImGui::Checkbox("isGoal", &isGoal);
+	ImGui::DragFloat3("transform", &camera_->translation_.x, 0.01f);
+	player_.DrawImGui();
 	ImGui::End();
 }
 
-SceneID GameScene::NextScene() const {
-	return nextScene_;
-}
+SceneID GameScene::NextScene() const { return nextScene_; }

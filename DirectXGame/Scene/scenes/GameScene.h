@@ -2,7 +2,11 @@
 #include "../Scene.h"
 #include "../manager/SceneID.h"
 #include "Game/LoadJsonFile/FileJson.h"
-#include <string>
+#include "KamataEngine.h"
+#include "../../Game/Player/Player.h"
+#include "../../Game/stage/stages/stageBlock/PortalManager.h"
+#include "../../Game/stage/StageManager.h"
+
 class GameScene : public Scene {
 public:
 	/// <summary>
@@ -39,11 +43,23 @@ public:
 private:
 	SceneID nextScene_;
 
+	PortalManager portalManager_;
+
+	KamataEngine::Camera* camera_ = nullptr;
+	Player player_;
+
+	// ステージマネージャー
+	StageManager* stageManager_;
+
 	// Csvデータ
 	std::vector<std::vector<int>> csvData_;
 
 	// Json読み書き用のファイルアクセサ
 	FileJson::FileAccessor* fileAccessor_;
+
+	int ereaNum = 1;
+	int stageNum = 1;
+	std::string stage = "Tutorial";
 
 	bool isGoal = false;
 };

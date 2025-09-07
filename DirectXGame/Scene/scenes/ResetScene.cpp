@@ -1,16 +1,10 @@
 #include "ResetScene.h"
 
-ResetScene::ResetScene() {
+ResetScene::ResetScene() {}
 
-}
+ResetScene::~ResetScene() {}
 
-ResetScene::~ResetScene() {
-
-}
-
-void ResetScene::Initialize() {
-
-}
+void ResetScene::Initialize() {}
 
 void ResetScene::Update() {
 
@@ -45,9 +39,9 @@ void ResetScene::Draw() {
 
 }
 
-void ResetScene::Delete() {
+void ResetScene::Draw() {}
 
-}
+void ResetScene::Delete() {}
 
 void ResetScene::DrawImGui() {
 	ImGui::Begin("ResetScene");
@@ -60,6 +54,4 @@ void ResetScene::DrawImGui() {
 	ImGui::End();
 }
 
-SceneID ResetScene::NextScene() const {
-	return nextScene_;
-}
+SceneID ResetScene::NextScene() const { return nextScene_; }
