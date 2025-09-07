@@ -57,9 +57,7 @@ private:
 	// Json読み書き用のファイルアクセサ
 	FileJson::FileAccessor* fileAccessor_;
 
-	int ereaNum = 1;
-	int stageNum = 1;
-	std::string stage = "Tutorial";
+
 
 	bool isGoal = false;
 };

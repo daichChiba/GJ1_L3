@@ -62,8 +62,8 @@ protected:
 	KamataEngine::Audio* audio_ = nullptr;
 
 	//stageの数値と文字列
-	int ereaNum = 1;
-	int stageNum = 1;
+	int ereaNum ;
+	int stageNum ;
 	std::string stage = "Tutorial";
 
 	bool isClear = true;
