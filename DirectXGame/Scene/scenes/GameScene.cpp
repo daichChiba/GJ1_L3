@@ -53,6 +53,8 @@ void GameScene::Update() {
 	}
 }
 
+void GameScene::Update() { player_.Update(); }
+
 void GameScene::Draw() {
 
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
@@ -69,7 +71,7 @@ void GameScene::Draw() {
 	// スプライト描画後処理
 	Sprite::PostDraw();
 	// 深度バッファクリア
-	dxCommon_->ClearDepthBuffer();
+	dxCommon->ClearDepthBuffer();
 #pragma endregion
 
 #pragma region 3Dオブジェクト描画
@@ -78,6 +80,7 @@ void GameScene::Draw() {
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
+	player_.Draw(*camera_);
 	/// </summary>
 
 	portalManager_->Draw(camera_);

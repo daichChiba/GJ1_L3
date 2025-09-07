@@ -20,6 +20,12 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 #pragma region 汎用機能初期化
 	// ImGuiManagerインスタンスの取得
 	ImGuiManager* imguiManager_ = ImGuiManager::GetInstance();
+
+	// ゲームシーンのインスタンス生成
+	GameScene* gameScene = new GameScene();
+	// ゲームシーンの初期化
+	gameScene->Initialize();
+
 #pragma endregion
 	// メインループ
 	while (true) {
@@ -46,6 +52,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		dxCommon->PreDraw();
 
 		// ここに描画処理を記述する
+		gameScene->Draw();
 
 		sceneManager_.Draw();
 
