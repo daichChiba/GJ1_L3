@@ -156,6 +156,9 @@
   <ItemGroup>
     <ClCompile Include="ect\MathUtilityEX.cpp" />
     <ClCompile Include="ect\worldTransfromEX.cpp" />
+    <ClCompile Include="Game\Collision\Collider.cpp" />
+    <ClCompile Include="Game\Collision\ColliderManager.cpp" />
+    <ClCompile Include="Game\Collision\Sphere.cpp" />
     <ClCompile Include="Game\LoadJsonFile\FileJson.cpp" />
     <ClCompile Include="Game\Player\Player.cpp" />
     <ClCompile Include="Game\stage\stages\stageBlock\portal\Portal.cpp" />
@@ -268,6 +271,10 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\Collision\Collider.h" />
+    <ClInclude Include="Game\Collision\ColliderManager.h" />
+    <ClInclude Include="Game\Collision\ObjID.h" />
+    <ClInclude Include="Game\Collision\Sphere.h" />
     <ClInclude Include="Game\LoadJsonFile\FileJson.h" />
     <ClInclude Include="Game\Player\Player.h" />
     <ClInclude Include="Game\stage\stages\stageBlock\portal\Portal.h" />
