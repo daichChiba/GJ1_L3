@@ -154,6 +154,8 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game\Collision\ColliderManager.cpp" />
+    <ClCompile Include="Game\Collision\Collider.cpp" />
     <ClCompile Include="ect\MathUtilityEX.cpp" />
     <ClCompile Include="ect\worldTransfromEX.cpp" />
     <ClCompile Include="Game\LoadJsonFile\FileJson.cpp" />
@@ -167,6 +169,7 @@
     <ClCompile Include="Scene\scenes\ResetScene.cpp" />
     <ClCompile Include="Game\stage\stages\Stage.cpp" />
     <ClCompile Include="Game\stage\StageManager.cpp" />
+    <ClCompile Include="Game\Collision\Sphere.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
@@ -268,6 +271,9 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\Collision\ColliderManager.h" />
+    <ClInclude Include="Game\Collision\Collider.h" />
+    <ClInclude Include="Game\Collision\ObjID.h" />
     <ClInclude Include="Game\LoadJsonFile\FileJson.h" />
     <ClInclude Include="Game\Player\Player.h" />
     <ClInclude Include="Game\stage\stages\stageBlock\portal\Portal.h" />
@@ -280,6 +286,7 @@
     <ClInclude Include="Game\stage\stages\Stage.h" />
     <ClInclude Include="Game\stage\StageID.h" />
     <ClInclude Include="Game\stage\StageManager.h" />
+    <ClInclude Include="Game\Collision\Sphere.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

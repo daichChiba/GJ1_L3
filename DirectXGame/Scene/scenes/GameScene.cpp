@@ -25,7 +25,7 @@ void GameScene::Initialize() {
 	stageManager_->Initialize(ereaNum, stageNum, stage);
 
 	// プレイヤーの初期化
-	player_.Initialize(stageManager_->GetData());
+	player_.Initialize(stageManager_->GetData(),stageManager_->GetBlockSize());
 
 	// ポータルマネージャー初期化
 	portalManager_ = new PortalManager();
@@ -121,6 +121,7 @@ void GameScene::DrawImGui() {
 	ImGui::Text("%d_%d", ereaNum, stageNum);
 	ImGui::Checkbox("isGoal", &isGoal);
 	ImGui::DragFloat3("transform", &camera_->translation_.x, 0.01f);
+	stageManager_->DrawImGui();
 	ImGui::End();
 	player_.DrawImGui();
 }

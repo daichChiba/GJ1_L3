@@ -4,15 +4,19 @@
 
 using namespace KamataEngine;
 using namespace DirectX;
+using namespace MathUtility;
 
-void Player::Initialize(std::vector<std::vector<StageType>> Data_) {
+void Player::Initialize(std::vector<std::vector<StageType>> Data_, KamataEngine::Vector2 BlockSize) {
 
 	// FileAccessorの初期化
 	fileAccessor_ = nullptr;
 	// JSONファイル名を指定してFileAccessorを初期化 (相対パスを使用)
 	fileAccessor_ = new FileJson::FileAccessor("Resources/Json/Player.json");
 
+	stage_ = new Stage;
+
 	playerData_.data = Data_;
+	playerData_.blockSize = BlockSize;
 
 	model_ = Model::CreateFromOBJ("player");
 	worldTransform_.Initialize();
@@ -41,16 +45,15 @@ void Player::Initialize(std::vector<std::vector<StageType>> Data_) {
 
 void Player::Update() {
 
-	Input* input = Input::GetInstance();
-
-	if (input->PushKey(DIK_A)) {
-		worldTransform_.translation_.x -= speed;
-		targetAngleY_ = -90.0f; // 左向き
-	}
-	if (input->PushKey(DIK_D)) {
-		worldTransform_.translation_.x += speed;
-		targetAngleY_ = 90.0f; // 右向き
-	}
+	MoveInput();
+	//if (input->PushKey(DIK_A)) {
+	//	worldTransform_.translation_.x -= speed;
+	//	targetAngleY_ = -90.0f; // 左向き
+	//}
+	//if (input->PushKey(DIK_D)) {
+	//	worldTransform_.translation_.x += speed;
+	//	targetAngleY_ = 90.0f; // 右向き
+	//}
 
 	// 現在の角度（度）
 	float currentAngle = XMConvertToDegrees(worldTransform_.rotation_.y);
@@ -85,12 +88,12 @@ void Player::Update() {
 	// ラジアンにして反映
 	worldTransform_.rotation_.y = XMConvertToRadians(newAngle);
 
-	// ジャンプ入力（スペースキー）
-	if (input->TriggerKey(DIK_SPACE) && jumpCount_ < maxJumpCount_) {
-		velocityY_ = jumpPower;
-		isJumping_ = true;
-		jumpCount_++; // ジャンプ回数を加算
-	}
+	//// ジャンプ入力（スペースキー）
+	//if (input->TriggerKey(DIK_SPACE) && jumpCount_ < maxJumpCount_) {
+	//	velocityY_ = jumpPower;
+	//	isJumping_ = true;
+	//	jumpCount_++; // ジャンプ回数を加算
+	//}
 
 	// 重力・落下処理
 	if (isJumping_) {
@@ -122,3 +125,76 @@ void Player::DrawImGui() {
 	ImGui::DragFloat3("transform", &worldTransform_.translation_.x, 0.01f);
 	ImGui::End();
 }
+
+void Player::MoveInput() {
+	if (input->PushKey(DIK_A)) {
+		worldTransform_.translation_.x -= speed;
+		targetAngleY_ = -90.0f; // 左向き
+	}
+	if (input->PushKey(DIK_D)) {
+		worldTransform_.translation_.x += speed;
+		targetAngleY_ = 90.0f; // 右向き
+	}
+	if (input->TriggerKey(DIK_SPACE) && jumpCount_ < maxJumpCount_) {
+		velocityY_ = jumpPower;
+		isJumping_ = true;
+		jumpCount_++; // ジャンプ回数を加算
+	}
+}
+
+KamataEngine::Vector3 Player::GetWorldPos() {
+	Vector3 worldPos;
+
+	worldPos.x = worldTransform_.matWorld_.m[3][0];
+	worldPos.y = worldTransform_.matWorld_.m[3][1];
+	worldPos.z = worldTransform_.matWorld_.m[3][2];
+
+	return worldPos;
+}
+
+KamataEngine::Vector3 Player::CornerPosition(const KamataEngine::Vector3& center, Corner corner) {
+	Vector3 offsetTable[kNumCorner] = {
+	    {+playerData_.blockSize.x / 2.0f, -playerData_.blockSize.y / 2.0f, 0.0f},
+        {-playerData_.blockSize.x / 2.0f, -playerData_.blockSize.y / 2.0f, 0.0f},
+        {+playerData_.blockSize.x / 2.0f, +playerData_.blockSize.y / 2.0f, 0.0f},
+        {-playerData_.blockSize.x / 2.0f, +playerData_.blockSize.y / 2.0f, 0.0f}
+    };
+
+	return offsetTable[static_cast<int>(corner)] + center;
+}
+
+//void Player::MapCollision(CollisionMapInfo& info) {
+//
+//}
+//
+//void Player::MapCollisionTop(CollisionMapInfo& info) {
+//
+//}
+//
+//void Player::MapCollisionBottom(CollisionMapInfo& info) {
+//
+//}
+//
+//void Player::MapCollisionLeft(CollisionMapInfo& info) {
+//
+//}
+//
+//void Player::MapCollisionRight(CollisionMapInfo& info) {
+//
+//}
+
+//void Player::Move(CollisionMapInfo& info) {
+//	if (input->PushKey(DIK_A)) {
+//		worldTransform_.translation_.x -= speed;
+//		targetAngleY_ = -90.0f; // 左向き
+//	}
+//	if (input->PushKey(DIK_D)) {
+//		worldTransform_.translation_.x += speed;
+//		targetAngleY_ = 90.0f; // 右向き
+//	}
+//	if (input->TriggerKey(DIK_SPACE) && jumpCount_ < maxJumpCount_) {
+//		velocityY_ = jumpPower;
+//		isJumping_ = true;
+//		jumpCount_++; // ジャンプ回数を加算
+//	}
+//}

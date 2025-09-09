@@ -6,15 +6,7 @@
 
 using namespace KamataEngine;
 
-namespace {
 
-std::map<std::string, StageType> mapChipTable = {
-    {"0", StageType::kBlank         },
-    {"1", StageType::kBlock         },
-    {"2", StageType::kEntrancePortal},
-    {"3", StageType::kExitPortal    },
-};
-}
 
 void Stage::Initialize(int ereaNum_, int stageNum_, std::string stage_) {
 	BlockModel_ = Model::CreateFromOBJ("block");
@@ -43,6 +35,8 @@ void Stage::Initialize(int ereaNum_, int stageNum_, std::string stage_) {
 				StageData_.data[y][x] = static_cast<StageType>(csvData_[y][x]);
 			}
 			Vector3 BlockPos = {1.0f * x, 1.0f * (csvData_.size() - 1 - y), 0};
+			StageData_.blockSize.x = fileAccessor_->Read(stage_, "blockSizeX", float());
+			StageData_.blockSize.y = fileAccessor_->Read(stage_, "blockSizeY", float());
 
 			worldTransform_[y][x].translation_ = BlockPos;
 			worldTransform_[y][x].Initialize();
@@ -68,28 +62,33 @@ void Stage::Draw(KamataEngine::Camera* camera_) {
 	}
 }
 
-// Vector3 Stage::GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex) { return Vector3(kBlockWidth * xIndex, kBlockHeight * (kNumBlockVirtical - 1 - yIndex), 0); }
-//
-// Stage::IndexSet Stage::GetMapChipIndexSetByPosition(const Vector3& position) {
-//
-//	IndexSet indexSet = {};
-//
-//	indexSet.xIndex = static_cast<uint32_t>((position.x + kBlockWidth / 2) / kBlockWidth);
-//
-//	indexSet.yIndex = kNumBlockVirtical - 1 - static_cast<uint32_t>((position.y + kBlockHeight / 2) / kBlockHeight);
-//
-//	return indexSet;
-// }
-//
-// Stage::Rect Stage::GetRectByIndex(uint32_t xIndex, uint32_t yIndex) {
-//	// 指定ブロックの中心座標を取得する
-//	Vector3 center = GetMapChipPositionByIndex(xIndex, yIndex);
-//
-//	Rect rect;
-//	rect.left = center.x - kBlockWidth / 2.0f;
-//	rect.right = center.x + kBlockWidth / 2.0f;
-//	rect.bottom = center.y - kBlockHeight / 2.0f;
-//	rect.top = center.y + kBlockHeight / 2.0f;
-//
-//	return rect;
-// }
+Vector3 Stage::GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex) { return Vector3(StageData_.blockSize.x * xIndex, StageData_.blockSize.y * (StageData_.data.size() - 1 - yIndex), 0); }
+
+Stage::IndexSet Stage::GetMapChipIndexSetByPosition(const Vector3& position) {
+
+	IndexSet indexSet = {};
+
+	indexSet.xIndex = static_cast<uint32_t>((position.x + StageData_.blockSize.x / 2) / position.x + StageData_.blockSize.x);
+
+	indexSet.yIndex = static_cast<uint32_t>(StageData_.data.size()) - 1 - static_cast<uint32_t>((position.y + position.x + StageData_.blockSize.y / 2) / position.x + StageData_.blockSize.x);
+
+	return indexSet;
+}
+
+Stage::Rect Stage::GetRectByIndex(uint32_t xIndex, uint32_t yIndex) {
+	// 指定ブロックの中心座標を取得する
+	Vector3 center = GetMapChipPositionByIndex(xIndex, yIndex);
+
+	Rect rect;
+	rect.left = center.x - StageData_.blockSize.x / 2.0f;
+	rect.right = center.x + StageData_.blockSize.x / 2.0f;
+	rect.bottom = center.y - StageData_.blockSize.y / 2.0f;
+	rect.top = center.y + StageData_.blockSize.y / 2.0f;
+
+	return rect;
+}
+
+void Stage::DrawImGui() { 
+    int virtical = static_cast<int>(StageData_.data.size());
+    ImGui::DragInt("Virtical", &virtical);
+}

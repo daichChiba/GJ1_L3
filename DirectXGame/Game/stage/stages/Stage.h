@@ -5,10 +5,11 @@
 #include <base/DirectXCommon.h>
 #include <math/Vector3.h>
 
-using namespace KamataEngine;
+
 
 struct StageData {
 	std::vector<std::vector<StageType>> data;
+	KamataEngine::Vector2 blockSize;
 };
 
 class Stage {
@@ -23,26 +24,29 @@ public: // 関数
 	/*uint32_t GetNumBlockVirtical() { return kNumBlockVirtical; }
 	uint32_t GetNumBlockHorizontal() { return kNumBlockHorizontal; }*/
 
-	/*struct IndexSet {
+	struct IndexSet {
 	    uint32_t xIndex;
 	    uint32_t yIndex;
-	};*/
-
-	// IndexSet GetMapChipIndexSetByPosition(const Vector3& position);
-	// Rect GetRectByIndex(uint32_t xIndex, uint32_t yIndex);
-
-	// Vector3 GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex);
-
+	};
 	// 範囲短形
-	// struct Rect {
-	//	float left;   // 左端
-	//	float right;  // 右端
-	//	float bottom; // 下端
-	//	float top;    // 上端
-	//};
+	struct Rect {
+		float left;   // 左端
+		float right;  // 右端
+		float bottom; // 下端
+		float top;    // 上端
+	};
+
+	 IndexSet GetMapChipIndexSetByPosition(const Vector3& position);
+	 Rect GetRectByIndex(uint32_t xIndex, uint32_t yIndex);
+
+	 Vector3 GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex);
+
+	 void DrawImGui();
 
 	// getter
 	std::vector<std::vector<StageType>> GetData() { return StageData_.data; }
+
+	KamataEngine::Vector2 GetBlockSize() { return StageData_.blockSize; }
 
 private: // 変数
 

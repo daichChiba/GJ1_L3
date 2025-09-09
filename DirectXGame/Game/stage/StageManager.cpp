@@ -11,3 +11,5 @@ void StageManager::Initialize(int ereaNum_, int stageNum_, std::string stage_) {
 void StageManager::Update() { Stage_->Update(); }
 
 void StageManager::Draw(KamataEngine::Camera* camera_) { Stage_->Draw(camera_); }
+
+void StageManager::DrawImGui() { Stage_->DrawImGui(); }
