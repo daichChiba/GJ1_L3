@@ -41,6 +41,7 @@ public:
 
 	//void Move(CollisionMapInfo& info);
 
+	//void SetStage(Stage stage) { stage_ = &stage; }
 
 private:
 	KamataEngine::Model* model_ = nullptr;
@@ -64,7 +65,7 @@ private:
 
 	bool isSave_ = false;
 
-	Stage* stage_ = nullptr;
+	//Stage* stage_ = nullptr;
 
 	Input* input = Input::GetInstance();
 

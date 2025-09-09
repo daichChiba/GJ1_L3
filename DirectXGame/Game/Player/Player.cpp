@@ -13,7 +13,7 @@ void Player::Initialize(std::vector<std::vector<StageType>> Data_, KamataEngine:
 	// JSONファイル名を指定してFileAccessorを初期化 (相対パスを使用)
 	fileAccessor_ = new FileJson::FileAccessor("Resources/Json/Player.json");
 
-	stage_ = new Stage;
+	//stage_ = new Stage;
 
 	playerData_.data = Data_;
 	playerData_.blockSize = BlockSize;
@@ -182,7 +182,7 @@ KamataEngine::Vector3 Player::CornerPosition(const KamataEngine::Vector3& center
 //void Player::MapCollisionRight(CollisionMapInfo& info) {
 //
 //}
-
+//
 //void Player::Move(CollisionMapInfo& info) {
 //	if (input->PushKey(DIK_A)) {
 //		worldTransform_.translation_.x -= speed;
