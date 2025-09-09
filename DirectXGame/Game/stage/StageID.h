@@ -4,4 +4,5 @@ enum class StageType {
 	kBlock,          // ブロック
 	kEntrancePortal, // 入口ポータル
 	kExitPortal,     // 出口ポータル
+	kFirstPlayer,    // プレイヤーの初期位置
 };

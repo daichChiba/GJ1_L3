@@ -1,14 +1,18 @@
 #pragma once
+#include "../LoadJsonFile/FileJson.h"
+#include "../stage/StageID.h"
 #include "KamataEngine.h"
-
+struct PlayerData {
+	std::vector<std::vector<StageType>> data;
+};
 class Player {
 public:
-	void Initialize();
+	void Initialize(std::vector<std::vector<StageType>> Data_);
 	void Update();
 	void Draw(const KamataEngine::Camera& camera);
 	void DrawImGui();
 
-	KamataEngine::WorldTransform& GetWorldTransform() {return worldTransform_; }
+	KamataEngine::WorldTransform& GetWorldTransform() { return worldTransform_; }
 
 private:
 	KamataEngine::Model* model_ = nullptr;
@@ -22,4 +26,20 @@ private:
 	float holdTimer_ = 0.0f;            // ジャンプホールド時間
 	const float maxHoldTime_ = 0.2f;    // 最大ホールド時間（秒）
 	const float holdJumpBoost_ = 0.01f; // フレームごとの追加ジャンプ力
+
+	// Json読み書き用のファイルアクセサ
+	FileJson::FileAccessor* fileAccessor_;
+
+	const std::string playerJson_ = "Player";
+
+	PlayerData playerData_;
+
+	bool isSave_ = false;
+
+private:
+	float speed;
+	float gravity;
+	float jumpPower;
+	float groundY;
+	float rotationSpeed;
 };

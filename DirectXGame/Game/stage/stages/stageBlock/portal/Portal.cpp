@@ -37,7 +37,7 @@ void Portal::Initialize( std::vector<std::vector<StageType>> data_) {
 	for (uint32_t y = 0; y < PortalData_.data.size(); y++) {
 		PortalData_.data[y].resize(PortalData_.data[y].size());
 		for (uint32_t x = 0; x < PortalData_.data[y].size(); x++) {
-			Vector3 BlockPos = {1.0f * x, 1.0f * y, 0};
+			Vector3 BlockPos = {1.0f * x, 1.0f * (PortalData_.data.size() - 1 - y), 0};
 
 			worldTransform_[y][x].translation_ = BlockPos;
 			worldTransform_[y][x].Initialize();

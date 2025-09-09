@@ -1,6 +1,9 @@
 {
-  "Player": {
-    "velocityY_": 0.0,
-    "targetAngleY_" : 90.0
-  }
+    "Player": {
+        "gravity": 0.015,
+        "groundY": 1.0,
+        "jumpPower": 0.3,
+        "rotationSpeed": 0.1,
+        "speed": 0.1
+    }
 }

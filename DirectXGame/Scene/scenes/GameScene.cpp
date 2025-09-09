@@ -1,6 +1,5 @@
 #include "scene/scenes/GameScene.h"
 
-
 using namespace KamataEngine;
 
 GameScene::GameScene() {}
@@ -15,16 +14,18 @@ GameScene::~GameScene() {
 void GameScene::Initialize() {
 
 	Model::StaticInitialize();
-	// プレイヤーの初期化
-	player_.Initialize();
 
 	camera_ = new Camera();
+	camera_->translation_.y = 1.0f;
 	camera_->translation_.z = -30.0f;
 	camera_->Initialize();
 
 	// ステージマネージャー初期化
 	stageManager_ = new StageManager();
 	stageManager_->Initialize(ereaNum, stageNum, stage);
+
+	// プレイヤーの初期化
+	player_.Initialize(stageManager_->GetData());
 
 	// ポータルマネージャー初期化
 	portalManager_ = new PortalManager();
@@ -52,7 +53,6 @@ void GameScene::Update() {
 		}
 	}
 }
-
 
 void GameScene::Draw() {
 

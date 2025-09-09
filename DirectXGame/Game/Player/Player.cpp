@@ -5,25 +5,43 @@
 using namespace KamataEngine;
 using namespace DirectX;
 
-void Player::Initialize() {
+void Player::Initialize(std::vector<std::vector<StageType>> Data_) {
+
+	// FileAccessorの初期化
+	fileAccessor_ = nullptr;
+	// JSONファイル名を指定してFileAccessorを初期化 (相対パスを使用)
+	fileAccessor_ = new FileJson::FileAccessor("Resources/Json/Player.json");
+
+	playerData_.data = Data_;
 
 	model_ = Model::CreateFromOBJ("player");
 	worldTransform_.Initialize();
-	worldTransform_.translation_ = {0.0f, -5.0f, -30.0f};
+	// worldTransform_.translation_ = {0.0f, -5.0f, -30.0f};
+	// worldTransform_.translation_ = fileAccessor_->ReadVector3(playerJson_, "1stPos", Vector3());
+	for (uint32_t y = 0; y < playerData_.data.size(); y++) {
+		playerData_.data[y].resize(playerData_.data[y].size());
+		for (uint32_t x = 0; x < playerData_.data[y].size(); x++) {
+			Vector3 BlockPos = {1.0f * x, 1.0f * (playerData_.data.size() - 1 - y), 0};
+
+			if (playerData_.data[y][x] == StageType::kFirstPlayer || playerData_.data[y][x] == StageType::kEntrancePortal) {
+				worldTransform_.translation_ = BlockPos;
+			}
+		}
+	}
 
 	// Y軸を +90度回転して右向きにする
 	worldTransform_.rotation_.y = XMConvertToRadians(90.0f);
+
+	speed = fileAccessor_->Read(playerJson_, "speed", float());                 // キャラのスピード
+	gravity = fileAccessor_->Read(playerJson_, "gravity", float());             // 重力加速度
+	jumpPower = fileAccessor_->Read(playerJson_, "jumpPower", float());         // ジャンプの初速度
+	groundY = fileAccessor_->Read(playerJson_, "groundY", float());             // 地面Y座標
+	rotationSpeed = fileAccessor_->Read(playerJson_, "rotationSpeed", float()); // 補間係数（滑らかさ）
 }
 
 void Player::Update() {
 
 	Input* input = Input::GetInstance();
-
-	const float speed = 0.1f;         // キャラのスピード
-	const float gravity = 0.015f;     // 重力加速度
-	const float jumpPower = 0.3f;     // ジャンプの初速度
-	const float groundY = -5.0f;      // 地面Y座標
-	const float rotationSpeed = 0.1f; // 補間係数（滑らかさ）
 
 	if (input->PushKey(DIK_A)) {
 		worldTransform_.translation_.x -= speed;
@@ -99,6 +117,7 @@ void Player::Draw(const Camera& camera) {
 }
 
 void Player::DrawImGui() {
+
 	ImGui::Begin("Player");
 	ImGui::DragFloat3("transform", &worldTransform_.translation_.x, 0.01f);
 	ImGui::End();
