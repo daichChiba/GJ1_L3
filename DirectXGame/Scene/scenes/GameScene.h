@@ -2,6 +2,7 @@
 #include "KamataEngine.h"
 #include "Player.h"
 #include "Fade.h"
+#include "SkyDome.h"
 #include "scene/Scene.h"
 
 // シーンの種類
@@ -45,8 +46,10 @@ public:
 
 private:
 	KamataEngine::Camera* camera_ = nullptr;
+	KamataEngine::Model* Skydomemodel_ = nullptr;
 	Player player_;
 	Fade fade_;
+	SkyDome skydome_;
 
 	// シーン管理
 	SceneState sceneState_ = SceneState::Title; // 現在のシーン

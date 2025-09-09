@@ -15,8 +15,14 @@ void GameScene::Initialize() {
 	// プレイヤーの初期化
 	player_.Initialize();
 
+	// 天球の3Dモデルの生成
+	Skydomemodel_ = Model::CreateFromOBJ("SkyDome");
+
 	camera_ = new Camera();
 	camera_->Initialize();
+
+	// 天球の初期化
+	skydome_.Initialize(Skydomemodel_, camera_);
 
 	sceneState_ = SceneState::Title;
 	fade_.Initialize();
@@ -26,6 +32,7 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 
 	fade_.Update();
+	skydome_.Update();
 
 	// フェード中は入力を受け付けない
 	if (!fade_.IsFinished())
@@ -63,7 +70,6 @@ void GameScene::Update() {
 			fade_.Start(FadeState::FadeIn);
 		}
 	}
-
 }
 
 void GameScene::Draw() {
@@ -91,6 +97,10 @@ void GameScene::Draw() {
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
+	
+	// 天球
+	skydome_.Draw();
+
 	if (sceneState_ == SceneState::Game) {
 		player_.Draw(*camera_);
 	}
