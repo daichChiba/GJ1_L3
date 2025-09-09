@@ -7,7 +7,7 @@ struct PlayerData {
 };
 class Player {
 public:
-	void Initialize(std::vector<std::vector<StageType>> Data_);
+	void Initialize(std::vector<std::vector<StageType>> Data_,KamataEngine::Vector2 blockSize);
 	void Update();
 	void Draw(const KamataEngine::Camera& camera);
 	void DrawImGui();
@@ -33,6 +33,7 @@ private:
 	const std::string playerJson_ = "Player";
 
 	PlayerData playerData_;
+	KamataEngine::Vector2 blockSize_;
 
 	bool isSave_ = false;
 

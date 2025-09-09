@@ -26,6 +26,9 @@ void Stage::Initialize(int ereaNum_, int stageNum_, std::string stage_) {
 
 	csvData_ = fileAccessor_->ReadCsvData(stage_, std::to_string(ereaNum_) + "_" + std::to_string(stageNum_));
 
+	StageData_.blockSize.x = fileAccessor_->Read(stage_, "blockSizeX", float());
+	StageData_.blockSize.y = fileAccessor_->Read(stage_, "blockSizeY", float());
+
 	// worldTransform をステージサイズにリサイズ
 	worldTransform_.resize(csvData_.size());
 	for (uint32_t y = 0; y < csvData_.size(); y++) {
