@@ -1,7 +1,16 @@
 #pragma once
-#include "scene/Scene.h"
-#include "Player.h"
 #include "KamataEngine.h"
+#include "Player.h"
+#include "Fade.h"
+#include "scene/Scene.h"
+
+// シーンの種類
+enum class SceneState {
+
+	Title,
+	Game,
+	Clear,
+};
 
 class GameScene : public Scene {
 public:
@@ -35,7 +44,11 @@ public:
 	void DrawImGui() override;
 
 private:
-
 	KamataEngine::Camera* camera_ = nullptr;
 	Player player_;
+	Fade fade_;
+
+	// シーン管理
+	SceneState sceneState_ = SceneState::Title; // 現在のシーン
+	SceneState nextScene_ = SceneState::Title;  // フェード後に移行するシーン
 };

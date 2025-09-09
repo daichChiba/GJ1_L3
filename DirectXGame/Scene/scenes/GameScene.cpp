@@ -18,9 +18,53 @@ void GameScene::Initialize() {
 	camera_ = new Camera();
 	camera_->Initialize();
 
+	sceneState_ = SceneState::Title;
+	fade_.Initialize();
+	fade_.Start(FadeState::FadeIn); // タイトルはフェードインで開始
 }
 
-void GameScene::Update() { player_.Update(); }
+void GameScene::Update() {
+
+	fade_.Update();
+
+	// フェード中は入力を受け付けない
+	if (!fade_.IsFinished())
+		return;
+
+	switch (sceneState_) {
+	case SceneState::Title:
+		if (Input::GetInstance()->TriggerKey(DIK_SPACE)) {
+			fade_.Start(FadeState::FadeOut);
+			nextScene_ = SceneState::Game;
+		}
+		break;
+
+	case SceneState::Game:
+		player_.Update();
+		// 例: Enter でクリア画面に遷移
+		if (Input::GetInstance()->TriggerKey(DIK_RETURN)) {
+			fade_.Start(FadeState::FadeOut);
+			nextScene_ = SceneState::Clear;
+		}
+		break;
+
+	case SceneState::Clear:
+		if (Input::GetInstance()->TriggerKey(DIK_SPACE)) {
+			fade_.Start(FadeState::FadeOut);
+			nextScene_ = SceneState::Title;
+		}
+		break;
+	}
+
+	// フェードアウト終了後にシーン切り替え
+	if (fade_.IsFinished() && fade_.GetState() == FadeState::None) {
+		if (sceneState_ != nextScene_) {
+			sceneState_ = nextScene_;
+			fade_.Start(FadeState::FadeIn);
+		}
+	}
+
+}
 
 void GameScene::Draw() {
 
@@ -47,7 +91,9 @@ void GameScene::Draw() {
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
-	player_.Draw(*camera_);
+	if (sceneState_ == SceneState::Game) {
+		player_.Draw(*camera_);
+	}
 	/// </summary>
 
 	// 3Dオブジェクト描画後処理
@@ -60,6 +106,19 @@ void GameScene::Draw() {
 
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
+	switch (sceneState_) {
+	case SceneState::Title:
+		// TODO: タイトル用の文字スプライトを描画
+		break;
+	case SceneState::Clear:
+		// TODO: クリア画面用の文字スプライトを描画
+		break;
+	default:
+		break;
+	}
+
+	// フェードを一番上に
+	fade_.Draw();
 	/// </summary>
 
 	// スプライト描画後処理
