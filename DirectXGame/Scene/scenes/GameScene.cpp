@@ -45,6 +45,9 @@ void GameScene::Update() {
 	portalManager_->Update();
 
 	skydome_.Update();
+	if (player_.GetPortal() == true) {
+		isFinish = true;
+	}
 
 	if (isFinish == true) {
 		nextScene_ = SceneID::Reset;
@@ -53,7 +56,10 @@ void GameScene::Update() {
 				is1stPortalThrough = true;
 			} else if (is2ndPortalThrough == false) {
 				is2ndPortalThrough = true;
+			} else if (isGoal == false) {
+				isGoal = true;
 			}
+
 			if (isGoal == true) {
 				isClear = true;
 			}

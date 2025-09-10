@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Player.h"
 #include "../Collision/StageMapCollider.h"
 #include "input/Input.h"
@@ -108,6 +109,7 @@ void Player::Update() {
 	//}
 
 	worldTransform_.UpdateMatrix();
+	CheckExitPortalCollisionSphere(); // 追加
 }
 
 void Player::Draw(const Camera& camera) {
@@ -126,8 +128,8 @@ void Player::DrawImGui() {
 
 void Player::Moves() {
 	MoveInput();
-	MapCollision();
-	Move();
+		MapCollision();
+		Move();
 }
 
 void Player::MoveInput() {
@@ -298,3 +300,37 @@ KamataEngine::Vector3 Player::GetCornerPos(Vector3 pos, Corner corner) {
 	newPos += cornerOffsets[corner];
 	return newPos;
 }
+
+// 追加: 球体同士の当たり判定関数
+bool CheckSphereCollision(const Vector3& centerA, float radiusA, const Vector3& centerB, float radiusB) {
+    float dx = centerA.x - centerB.x;
+    float dy = centerA.y - centerB.y;
+    float dz = centerA.z - centerB.z;
+    float distSq = dx * dx + dy * dy + dz * dz;
+    float radiusSum = radiusA + radiusB;
+    return distSq <= (radiusSum * radiusSum);
+}
+
+void Player::CheckExitPortalCollisionSphere() {
+    isOnExitPortal_ = false;
+    // マップデータから出口ポータルを探す
+    for (uint32_t y = 0; y < playerData_.data.size(); ++y) {
+		for (uint32_t x = 0; x < playerData_.data[y].size(); ++x) {
+			if (playerData_.data[y][x] == StageType::kExitPortal) {
+                // 出口ポータルの中心座標
+                Vector3 portalCenter = stageMapCollider_->GetMapChipPositionByIndex(x, y);
+                    float portalRadius = std::min<float>(playerData_.blockSize.x, playerData_.blockSize.y) / 2.0f; // ポータルの半径（例）
+                // プレイヤーの中心座標
+                Vector3 playerCenter = worldTransform_.translation_;
+
+                // 球体同士の当たり判定
+                if (CheckSphereCollision(playerCenter, playerRadius_, portalCenter, portalRadius)) {
+                    isOnExitPortal_ = true;
+                    return;
+                }
+            }
+        }
+    }
+}
+
+

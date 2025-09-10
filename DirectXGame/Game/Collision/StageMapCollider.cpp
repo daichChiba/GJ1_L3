@@ -12,11 +12,11 @@ StageMapCollider::MapChipIndex StageMapCollider::GetMapChipIndex(const KamataEng
 }
 
 StageType StageMapCollider::GetMapChipType(const MapChipIndex& index) {
-	return data[index.x][index.y]; }
+	return data[index.y][index.x]; }
 
 StageType StageMapCollider::GetMapChipType(const Vector3& pos_) {
 	MapChipIndex index = GetMapChipIndex(pos_);
-	return data[index.x][index.y];
+	return data[index.y][index.x];
 }
 
 StageMapCollider::IndexSet StageMapCollider::GetMapChipIndexSetByPos(const Vector3& position) {

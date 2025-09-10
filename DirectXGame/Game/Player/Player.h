@@ -16,6 +16,7 @@ enum Corner { kRightBottom, kLeftBottom, kRightTop, kLeftTop, kNumCorner };
 class Player {
 public:
 	void Initialize(std::vector<std::vector<StageType>> Data_, KamataEngine::Vector2 BlockSize_);
+	void CheckExitPortalCollisionSphere();
 	void Update();
 	void Draw(const KamataEngine::Camera& camera);
 	void DrawImGui();
@@ -36,6 +37,8 @@ public:
 	KamataEngine::WorldTransform& GetWorldTransform() { return worldTransform_; }
 
 	KamataEngine::Vector3 GetCornerPos(Vector3 pos, Corner corner);
+
+	bool GetPortal() { return isOnExitPortal_; }
 
 private:
 	KamataEngine::Model* model_ = nullptr;
@@ -73,4 +76,10 @@ private:
 	float jumpPower;
 	float groundY;
 	float rotationSpeed;
+
+    // 追加: 球体コライダー用の半径
+    float playerRadius_ = 0.5f; // プレイヤーの半径（例）
+    bool isOnExitPortal_ = false;
+public:
+    bool IsOnExitPortal() const { return isOnExitPortal_; }
 };
