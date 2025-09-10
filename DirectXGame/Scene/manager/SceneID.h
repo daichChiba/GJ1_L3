@@ -2,7 +2,7 @@
 enum class SceneID {
 	Title,
 	Rule,
-	Tutlial,
+	Tutorial,
 	Game,
 	Clear,
 	Reset,
