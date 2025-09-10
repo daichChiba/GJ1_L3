@@ -282,6 +282,7 @@
     <ClInclude Include="Game\Player\Player.h" />
     <ClInclude Include="Game\stage\stages\stageBlock\portal\Portal.h" />
     <ClInclude Include="Game\stage\stages\stageBlock\PortalManager.h" />
+    <ClInclude Include="IScene.h" />
     <ClInclude Include="Scene\manager\SceneID.h" />
     <ClInclude Include="Scene\manager\SceneManager.h" />
     <ClInclude Include="Scene\scenes\GameScene.h" />
