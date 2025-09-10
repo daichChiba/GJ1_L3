@@ -11,6 +11,7 @@ public:
 	Sphere GetSphere() const { return sphere_; }
 	bool GetIsWarp() const { return isWarp_; }
 	std::function<void(int)> GetFOnCollision() { return fOnCollision; }
+	bool GetWarp() const { return true; }
 
 	void SetObjID(ObjID objId) { objID_ = objId; }
 	void SetSphere(Sphere sphere) { sphere_ = sphere; }

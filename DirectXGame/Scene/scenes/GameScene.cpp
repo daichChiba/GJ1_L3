@@ -122,7 +122,7 @@ void GameScene::DrawImGui() {
 	ImGui::Checkbox("isGoal", &isGoal);
 	ImGui::DragFloat3("transform", &camera_->translation_.x, 0.01f);
 	ImGui::End();
-	player_.DrawImGui();
+	//player_.DrawImGui();
 }
 
 SceneID GameScene::NextScene() const { return nextScene_; }
