@@ -1,6 +1,6 @@
 #pragma once
-#include "KamataEngine.h"
 #include "../stage/StageID.h"
+#include "KamataEngine.h"
 
 class StageMapCollider {
 public:
@@ -9,12 +9,22 @@ public:
 		uint32_t yIndex;
 	};
 
+	struct MapChipIndex {
+		int x;
+		int y;
+	};
+
 	struct Rect {
 		float left;
 		float right;
 		float bottom;
 		float top;
 	};
+
+	MapChipIndex GetMapChipIndex(const KamataEngine::Vector3& pos_);
+
+	StageType GetMapChipType(const MapChipIndex& index);
+	StageType GetMapChipType(const KamataEngine::Vector3& pos_);
 
 	IndexSet GetMapChipIndexSetByPos(const KamataEngine::Vector3& position);
 	Rect GetRectByIndex(uint32_t xIndex, uint32_t yIndex);

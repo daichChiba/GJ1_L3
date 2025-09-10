@@ -1,6 +1,23 @@
 #include "StageMapCollider.h"
-
+#include <algorithm>
 using namespace KamataEngine;
+
+StageMapCollider::MapChipIndex StageMapCollider::GetMapChipIndex(const KamataEngine::Vector3& pos_) {
+	MapChipIndex index;
+	index.x = static_cast<int>(pos_.x / blockSize.x);
+	index.y = static_cast<int>(pos_.y / blockSize.y);
+	index.x = std::clamp<int>(index.x, 0, static_cast<int>(data[0].size()) - 1);
+	index.y = std::clamp<int>(index.y, 0, static_cast<int>(data.size()) - 1);
+	return index;
+}
+
+StageType StageMapCollider::GetMapChipType(const MapChipIndex& index) {
+	return data[index.x][index.y]; }
+
+StageType StageMapCollider::GetMapChipType(const Vector3& pos_) {
+	MapChipIndex index = GetMapChipIndex(pos_);
+	return data[index.x][index.y];
+}
 
 StageMapCollider::IndexSet StageMapCollider::GetMapChipIndexSetByPos(const Vector3& position) {
 	IndexSet indexSet = {};
