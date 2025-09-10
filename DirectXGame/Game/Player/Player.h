@@ -10,9 +10,8 @@ struct PlayerData {
 	KamataEngine::Vector2 blockSize;
 };
 
-
-
 enum Corner { kRightBottom, kLeftBottom, kRightTop, kLeftTop, kNumCorner };
+
 class Player {
 public:
 	void Initialize(std::vector<std::vector<StageType>> Data_, KamataEngine::Vector2 BlockSize_);
@@ -35,12 +34,12 @@ public:
 
 	KamataEngine::WorldTransform& GetWorldTransform() { return worldTransform_; }
 
-	KamataEngine::Vector3 GetCornerPos(Vector3 pos, Corner corner);
+	KamataEngine::Vector3 GetCornerPos(KamataEngine::Vector3 pos, Corner corner);
 
 private:
 	KamataEngine::Model* model_ = nullptr;
 	KamataEngine::WorldTransform worldTransform_;
-	KamataEngine::Vector3 velocity_ ;
+	KamataEngine::Vector3 velocity_;
 	KamataEngine::Vector3 acacceleration_;
 	KamataEngine::Vector3 direction_;
 	bool isJumping_ = false;            // ジャンプ中かどうか
@@ -65,7 +64,11 @@ private:
 
 	StageMapCollider* stageMapCollider_ = nullptr;
 	Input* input;
-	const float kBlank = 1.0f;
+	const float kBlank = 0.04f; // 当たり判定の余白
+
+	// プレイヤーのサイズ
+	float kWidth = 1.0f;  // プレイヤーの幅
+	float kHeight = 0.8f; // プレイヤーの高さ
 
 private:
 	float speed;

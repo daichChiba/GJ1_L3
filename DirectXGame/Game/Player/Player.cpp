@@ -31,7 +31,7 @@ void Player::Initialize(std::vector<std::vector<StageType>> Data_, Vector2 Block
 		playerData_.data[y].resize(playerData_.data[y].size());
 		for (uint32_t x = 0; x < playerData_.data[y].size(); x++) {
 			if (playerData_.data[y][x] == StageType::kFirstPlayer || playerData_.data[y][x] == StageType::kEntrancePortal) {
-				Vector3 playerPos = {1.0f * x * playerData_.blockSize.x, 1.0f * (playerData_.data.size() - 1 - y) * playerData_.blockSize.x, 0};
+				Vector3 playerPos = {1.0f * x * playerData_.blockSize.x, 1.0f * (playerData_.data.size() - 1 - y) * playerData_.blockSize.y, 0};
 				worldTransform_.translation_ = playerPos;
 			}
 		}
@@ -283,8 +283,16 @@ void Player::MapCollisionRight() {
 }
 
 void Player::Move() {
-	
 	worldTransform_.translation_ += velocity_;
+
+	// マップ範囲で座標を制限
+	float minX = 0.0f;
+	float maxX = playerData_.blockSize.x * (playerData_.data[0].size() - 1);
+	float minY = 0.0f;
+	float maxY = playerData_.blockSize.y * (playerData_.data.size() - 1);
+
+	worldTransform_.translation_.x = std::clamp(worldTransform_.translation_.x, minX, maxX);
+	worldTransform_.translation_.y = std::clamp(worldTransform_.translation_.y, minY, maxY);
 }
 
 KamataEngine::Vector3 Player::GetCornerPos(Vector3 pos, Corner corner) {
