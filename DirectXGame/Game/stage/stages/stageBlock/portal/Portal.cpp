@@ -17,7 +17,7 @@ std::map<std::string, StageType> mapChipTable = {
 }
 
 void Portal::Initialize( std::vector<std::vector<StageType>> data_) {
-	BlockModel_ = Model::CreateFromOBJ("block");
+	BlockModel_ = Model::CreateFromOBJ("Portal");
 
 	objectColor_ = new ObjectColor();
 	objectColor_->Initialize();
