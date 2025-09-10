@@ -30,6 +30,11 @@ void GameScene::Initialize() {
 	// ポータルマネージャー初期化
 	portalManager_ = new PortalManager();
 	portalManager_->Initialize(stageManager_->GetData());
+
+	// 天球の3Dモデルの生成
+	Skydomemodel_ = Model::CreateFromOBJ("SkyDome");
+	// 天球の初期化
+	skydome_.Initialize(Skydomemodel_, camera_);
 }
 
 void GameScene::Update() {
@@ -38,6 +43,8 @@ void GameScene::Update() {
 	stageManager_->Update();
 
 	portalManager_->Update();
+
+	skydome_.Update();
 
 	if (isFinish == true) {
 		nextScene_ = SceneID::Reset;
@@ -79,7 +86,6 @@ void GameScene::Draw() {
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
-	player_.Draw(*camera_);
 	/// </summary>
 
 	portalManager_->Draw(camera_);
@@ -87,6 +93,9 @@ void GameScene::Draw() {
 	player_.Draw(*camera_);
 
 	stageManager_->Draw(camera_);
+
+	// 天球
+	skydome_.Draw();
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

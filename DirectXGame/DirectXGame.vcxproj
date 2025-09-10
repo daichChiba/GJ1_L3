@@ -171,6 +171,7 @@
     <ClCompile Include="Scene\scenes\ResetScene.cpp" />
     <ClCompile Include="Game\stage\stages\Stage.cpp" />
     <ClCompile Include="Game\stage\StageManager.cpp" />
+    <ClCompile Include="SkyDome.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
@@ -289,6 +290,7 @@
     <ClInclude Include="Game\stage\stages\Stage.h" />
     <ClInclude Include="Game\stage\StageID.h" />
     <ClInclude Include="Game\stage\StageManager.h" />
+    <ClInclude Include="SkyDome.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
