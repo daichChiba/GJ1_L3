@@ -30,9 +30,8 @@ void Player::Initialize(std::vector<std::vector<StageType>> Data_, Vector2 Block
 	for (uint32_t y = 0; y < playerData_.data.size(); y++) {
 		playerData_.data[y].resize(playerData_.data[y].size());
 		for (uint32_t x = 0; x < playerData_.data[y].size(); x++) {
-			Vector3 playerPos = {1.0f * x * playerData_.blockSize.x, 1.0f * (playerData_.data.size() - 1 - y) * playerData_.blockSize.x, 0};
-
 			if (playerData_.data[y][x] == StageType::kFirstPlayer || playerData_.data[y][x] == StageType::kEntrancePortal) {
+				Vector3 playerPos = {1.0f * x * playerData_.blockSize.x, 1.0f * (playerData_.data.size() - 1 - y) * playerData_.blockSize.x, 0};
 				worldTransform_.translation_ = playerPos;
 			}
 		}
@@ -159,6 +158,7 @@ void Player::MoveInput() {
 	acacceleration_ = direction_;
 	acacceleration_ *= speed;
 	velocity_ += acacceleration_;
+	velocity_.y += gravity;
 
 	if (!isMove) {
 		velocity_ *= kFriction;
@@ -195,6 +195,7 @@ void Player::MapCollisionTop() {
 		return;
 	}
 	Vector3 newPos = worldTransform_.translation_;
+	newPos.y += velocity_.y;
 	Vector3 topLeft = GetCornerPos(newPos, Corner::kLeftTop);
 	Vector3 topRight = GetCornerPos(newPos, Corner::kRightTop);
 	bool hit = false;
@@ -217,6 +218,7 @@ void Player::MapCollisionBottom() {
 		return;
 	}
 	Vector3 newPos = worldTransform_.translation_;
+	newPos.y += velocity_.y;
 	Vector3 bottomLeft = GetCornerPos(newPos, Corner::kLeftBottom);
 	Vector3 bottomRight = GetCornerPos(newPos, Corner::kRightBottom);
 	bool hit = false;
@@ -230,7 +232,7 @@ void Player::MapCollisionBottom() {
 
 	if (hit) {
 		StageMapCollider::Rect mapChipRect = stageMapCollider_->GetRectByIndex(static_cast<int>(bottomLeft.x), static_cast<int>(bottomLeft.y));
-		velocity_.y = std::min<float>(0.0f, mapChipRect.top - worldTransform_.translation_.y - playerData_.blockSize.y / 2 - kBlank);
+		velocity_.y = std::max<float>(0.0f, mapChipRect.top - worldTransform_.translation_.y - playerData_.blockSize.y / 2 - kBlank);
 	}
 }
 
@@ -239,6 +241,7 @@ void Player::MapCollisionLeft() {
 		return;
 	}
 	Vector3 newPos = worldTransform_.translation_;
+	newPos += velocity_;
 	Vector3 topLeft = GetCornerPos(newPos, Corner::kLeftTop);
 	Vector3 bottomLeft = GetCornerPos(newPos, Corner::kLeftBottom);
 	bool hit = false;
@@ -252,7 +255,7 @@ void Player::MapCollisionLeft() {
 
 	if (hit) {
 		StageMapCollider::Rect mapChipRect = stageMapCollider_->GetRectByIndex(static_cast<int>(topLeft.x), static_cast<int>(topLeft.y));
-		velocity_.y = std::min<float>(0.0f, mapChipRect.right - worldTransform_.translation_.x + playerData_.blockSize.x / 2 + kBlank);
+		velocity_.x = std::min<float>(0.0f, mapChipRect.right - worldTransform_.translation_.x + playerData_.blockSize.x / 2 + kBlank);
 	}
 }
 
@@ -261,6 +264,7 @@ void Player::MapCollisionRight() {
 		return;
 	}
 	Vector3 newPos = worldTransform_.translation_;
+	newPos += velocity_;
 	Vector3 topRight = GetCornerPos(newPos, Corner::kRightTop);
 	Vector3 bottomRight = GetCornerPos(newPos, Corner::kRightBottom);
 	bool hit = false;
@@ -274,11 +278,14 @@ void Player::MapCollisionRight() {
 
 	if (hit) {
 		StageMapCollider::Rect mapChipRect = stageMapCollider_->GetRectByIndex(static_cast<int>(topRight.x), static_cast<int>(topRight.y));
-		velocity_.y = std::min<float>(0.0f, mapChipRect.left - worldTransform_.translation_.x - playerData_.blockSize.x / 2 - kBlank);
+		velocity_.x = std::max<float>(0.0f, mapChipRect.left - worldTransform_.translation_.x - playerData_.blockSize.x / 2 - kBlank);
 	}
 }
 
-void Player::Move() { worldTransform_.translation_ = velocity_; }
+void Player::Move() {
+	
+	worldTransform_.translation_ += velocity_;
+}
 
 KamataEngine::Vector3 Player::GetCornerPos(Vector3 pos, Corner corner) {
 	std::unordered_map<Corner, Vector3> cornerOffsets = {
