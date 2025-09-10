@@ -41,34 +41,23 @@ public:
 	void SetEreaNum(int num) { ereaNum = num; }
 	void SetStageNum(int num) { stageNum = num; }
 	void SetStage(std::string str) { stage = str; }
-	void SetIsCrear(bool is) { isClear = is; }
-	void SetIs1stPortalThrough(bool is) { is1stPortalThrough = is; }
-	void SetIs2ndPortalThrough(bool is) { is2ndPortalThrough = is; }
 
-	// getter
 	int GetEreaNum() { return ereaNum; }
 	int GetStageNum() { return stageNum; }
 	std::string GetStage() { return stage; }
-	bool GetIsClear() { return isClear; }
-	bool GetIs1stPortalThrough() { return is1stPortalThrough; }
-	bool GetIs2ndPortalThrough() { return is2ndPortalThrough; }
 
 private:
 
-private:
 protected:
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
 	KamataEngine::Input* input_ = nullptr;
 	KamataEngine::Audio* audio_ = nullptr;
 
 	//stageの数値と文字列
-	int ereaNum ;
-	int stageNum ;
+	int ereaNum = 1;
+	int stageNum = 1;
 	std::string stage = "Tutorial";
 
-	bool isClear = true;
-	bool is1stPortalThrough = false;
-	bool is2ndPortalThrough = false;
 
 	bool isFinish;
 };

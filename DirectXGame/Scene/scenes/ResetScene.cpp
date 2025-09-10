@@ -8,9 +8,9 @@ void ResetScene::Initialize() {}
 
 void ResetScene::Update() {
 
-	if (isClear==false) {
+	if (isClear == false) {
 		isFinish = true;
-		if (is1stPortalThrough==true&&is2ndPortalThrough==false) {
+		if (is1stPortalThrough == true && is2ndPortalThrough == false) {
 			stageNum += 1;
 		} else if (is1stPortalThrough == true && is2ndPortalThrough == true) {
 			stageNum += 1;
@@ -24,21 +24,18 @@ void ResetScene::Update() {
 		stageNum = 1;
 	}
 
-	if (isFinish==true) {
+	if (isFinish == true) {
 		isClear = false;
 		nextScene_ = SceneID::Game;
 	}
-	if (ereaNum==1) {
+	if (ereaNum == 1) {
 		stage = "Tutorial";
-	} else if(ereaNum == 2) {
+	} else if (ereaNum == 2) {
 		stage = "Stage_2";
 	}
 }
 
-void ResetScene::Draw() {
-
-}
-
+void ResetScene::Draw() {}
 
 void ResetScene::Delete() {}
 
@@ -48,8 +45,8 @@ void ResetScene::DrawImGui() {
 	ImGui::Checkbox("isFinished", &isFinish);
 	ImGui::SliderInt("ereaNum", &ereaNum, 1, 1);
 	ImGui::SliderInt("stageNum", &stageNum, 1, 3);
-    ImGui::Text("%d_%d", ereaNum, stageNum);
-    ImGui::Text("stage=%s", stage.c_str());
+	ImGui::Text("%d_%d", ereaNum, stageNum);
+	ImGui::Text("stage=%s", stage.c_str());
 	ImGui::End();
 }
 
