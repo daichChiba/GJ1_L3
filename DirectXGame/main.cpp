@@ -3,6 +3,7 @@
 #include <KamataEngine.h>
 #include <Windows.h>
 #include <map>
+#include "Scene/SpriteManager/GlobalSpriteManger.h"
 
 using namespace KamataEngine;
 // Windowsアプリでのエントリーポイント(main関数)
@@ -15,7 +16,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 	// シーンマネージャー
 	SceneManager sceneManager_;
-	sceneManager_.ChangeScene(SceneID::Reset); // 最初は GameScene
+	sceneManager_.ChangeScene(SceneID::Title); // 最初は GameScene
 
 #pragma region 汎用機能初期化
 	// ImGuiManagerインスタンスの取得

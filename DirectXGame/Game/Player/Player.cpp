@@ -120,10 +120,13 @@ void Player::Draw(const Camera& camera) {
 }
 
 void Player::DrawImGui() {
-
+#ifdef DEBUG_
 	ImGui::Begin("Player");
 	ImGui::DragFloat3("transform", &worldTransform_.translation_.x, 0.01f);
 	ImGui::End();
+#endif // DEBUG_
+
+
 }
 
 void Player::Moves() {

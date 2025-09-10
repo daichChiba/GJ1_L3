@@ -1,17 +1,9 @@
 #pragma once
 #include "../Scene.h"
-
-
-class ResetScene : public Scene {
+class TitelScene : public Scene {
 public:
-	/// <summary>
-	///
-	/// </summary>
-	ResetScene();
-	/// <summary>
-	///
-	/// </summary>
-	~ResetScene();
+	TitelScene();
+	~TitelScene();
 	/// <summary>
 	/// 初期化
 	/// </summary>
@@ -34,10 +26,10 @@ public:
 	void DrawImGui() override;
 	SceneID NextScene() const override;
 
-	
 
-private:
+	private:
 	SceneID nextScene_;
 
 	uint32_t th_;
+	uint32_t th2_;
 };

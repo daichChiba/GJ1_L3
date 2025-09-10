@@ -2,6 +2,8 @@
 #include "Scene/manager/SceneID.h"
 #include "Scene/scenes/GameScene.h"
 #include "Scene/scenes/ResetScene.h"
+#include "Scene/scenes/TitelScene.h"
+#include "Scene/scenes/ClearScene.h"
 #include <KamataEngine.h>
 #include <map>
 class SceneManager {

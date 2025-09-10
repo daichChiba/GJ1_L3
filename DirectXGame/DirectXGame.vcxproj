@@ -154,6 +154,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\scenes\ClearScene.cpp" />
     <ClCompile Include="ect\MathUtilityEX.cpp" />
     <ClCompile Include="ect\worldTransfromEX.cpp" />
     <ClCompile Include="Game\Collision\Collider.cpp" />
@@ -171,7 +172,10 @@
     <ClCompile Include="Scene\scenes\ResetScene.cpp" />
     <ClCompile Include="Game\stage\stages\Stage.cpp" />
     <ClCompile Include="Game\stage\StageManager.cpp" />
+    <ClCompile Include="Scene\SpriteManager\GlobalSpriteManger.cpp" />
+    <ClCompile Include="Scene\SpriteManager\SpriteManger.cpp" />
     <ClCompile Include="SkyDome.cpp" />
+    <ClCompile Include="Scene\scenes\TitelScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
@@ -273,6 +277,7 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scene\scenes\ClearScene.h" />
     <ClInclude Include="Game\Collision\Collider.h" />
     <ClInclude Include="Game\Collision\ColliderManager.h" />
     <ClInclude Include="Game\Collision\ObjID.h" />
@@ -291,7 +296,10 @@
     <ClInclude Include="Game\stage\stages\Stage.h" />
     <ClInclude Include="Game\stage\StageID.h" />
     <ClInclude Include="Game\stage\StageManager.h" />
+    <ClInclude Include="Scene\SpriteManager\GlobalSpriteManger.h" />
+    <ClInclude Include="Scene\SpriteManager\SpriteManger.h" />
     <ClInclude Include="SkyDome.h" />
+    <ClInclude Include="Scene\scenes\TitelScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

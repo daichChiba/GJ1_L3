@@ -62,6 +62,8 @@ void GameScene::Update() {
 
 			if (isGoal == true) {
 				isClear = true;
+				nextScene_ = SceneID::Clear;
+
 			}
 		}
 	}
@@ -130,6 +132,7 @@ void GameScene::Delete() {
 }
 
 void GameScene::DrawImGui() {
+#ifdef DEBUG_
 	ImGui::Begin("GameScene");
 	ImGui::Text("Test");
 	ImGui::Checkbox("isFinished", &isFinish);
@@ -138,6 +141,9 @@ void GameScene::DrawImGui() {
 	ImGui::DragFloat3("transform", &camera_->translation_.x, 0.01f);
 	ImGui::End();
 	player_.DrawImGui();
+
+#endif // DEBUG_
+
 }
 
 SceneID GameScene::NextScene() const { return nextScene_; }

@@ -10,6 +10,11 @@ void SceneManager::ChangeScene(SceneID nextScene) {
 	}
 	// 新しいシーンを生成
 	switch (nextScene) {
+	case SceneID::Title:
+		currentScene_ = std::make_unique<TitelScene>();
+		SetInformation();
+		break;
+
 	case SceneID::Game:
 		currentScene_ = std::make_unique<GameScene>();
 		SetInformation();
@@ -19,6 +24,12 @@ void SceneManager::ChangeScene(SceneID nextScene) {
 		currentScene_ = std::make_unique<ResetScene>();
 		SetInformation();
 		break;
+
+	case SceneID::Clear:
+		currentScene_ = std::make_unique<ClearScene>();
+		SetInformation();
+		break;
+
 	}
 
 	currentSceneID_ = nextScene;
