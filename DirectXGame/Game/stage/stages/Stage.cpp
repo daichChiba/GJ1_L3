@@ -25,6 +25,8 @@ void Stage::Initialize(int ereaNum_, int stageNum_, std::string stage_) {
 	fileAccessor_ = new FileJson::FileAccessor("Resources/Json/Stage.json");
 
 	csvData_ = fileAccessor_->ReadCsvData(stage_, std::to_string(ereaNum_) + "_" + std::to_string(stageNum_));
+	StageData_.blockSize.x = fileAccessor_->Read(stage_, "blockSizeX", float());
+	StageData_.blockSize.x = fileAccessor_->Read(stage_, "blockSizeY", float());
 
 	// worldTransform をステージサイズにリサイズ
 	worldTransform_.resize(csvData_.size());

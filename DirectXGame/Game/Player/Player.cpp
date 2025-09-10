@@ -1,18 +1,23 @@
 #include "Player.h"
 #include "input/Input.h"
 #include <DirectXMath.h>
+#include "../Collision/StageMapCollider.h"
 
 using namespace KamataEngine;
 using namespace DirectX;
 
-void Player::Initialize(std::vector<std::vector<StageType>> Data_) {
+void Player::Initialize(std::vector<std::vector<StageType>> Data_,Vector2 BlockSize_) {
 
 	// FileAccessorの初期化
 	fileAccessor_ = nullptr;
 	// JSONファイル名を指定してFileAccessorを初期化 (相対パスを使用)
 	fileAccessor_ = new FileJson::FileAccessor("Resources/Json/Player.json");
 
+	stageMapCollider_ = new StageMapCollider;
+	stageMapCollider_->SetBlockSize(playerData_.blockSize);
+
 	playerData_.data = Data_;
+	playerData_.blockSize = BlockSize_;
 
 	model_ = Model::CreateFromOBJ("player");
 	worldTransform_.Initialize();

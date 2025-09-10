@@ -2,12 +2,31 @@
 #include "../LoadJsonFile/FileJson.h"
 #include "../stage/StageID.h"
 #include "KamataEngine.h"
+#include "../Collision/Collider.h"
+
+class StageMapCollider;
 struct PlayerData {
 	std::vector<std::vector<StageType>> data;
+	KamataEngine::Vector2 blockSize;
+};
+
+struct CollisionMapInfo {
+	bool isCeilingCollision = false;
+	bool landing = false;
+	bool isWallTouch = false;
+	Vector3 velocity;
+};
+
+enum Corner {
+	kRightBottom,
+	kLeftBottom,
+	kRightTop,
+	kLeftTop,
+	kNumCorner
 };
 class Player {
 public:
-	void Initialize(std::vector<std::vector<StageType>> Data_);
+	void Initialize(std::vector<std::vector<StageType>> Data_, KamataEngine::Vector2 BlockSize_);
 	void Update();
 	void Draw(const KamataEngine::Camera& camera);
 	void DrawImGui();
@@ -35,6 +54,8 @@ private:
 	PlayerData playerData_;
 
 	bool isSave_ = false;
+
+	StageMapCollider* stageMapCollider_ = nullptr;
 
 private:
 	float speed;
