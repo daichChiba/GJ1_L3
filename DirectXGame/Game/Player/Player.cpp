@@ -5,7 +5,7 @@
 using namespace KamataEngine;
 using namespace DirectX;
 
-void Player::Initialize(std::vector<std::vector<StageType>> Data_, KamataEngine::Vector2 blockSize) {
+void Player::Initialize(std::vector<std::vector<StageType>> Data_) {
 
 	// FileAccessorの初期化
 	fileAccessor_ = nullptr;
@@ -13,7 +13,6 @@ void Player::Initialize(std::vector<std::vector<StageType>> Data_, KamataEngine:
 	fileAccessor_ = new FileJson::FileAccessor("Resources/Json/Player.json");
 
 	playerData_.data = Data_;
-	blockSize_ = blockSize;
 
 	model_ = Model::CreateFromOBJ("player");
 	worldTransform_.Initialize();

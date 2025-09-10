@@ -15,7 +15,6 @@ public:
 
 	// getter
 	std::vector<std::vector<StageType>> GetData() {return Stage_->GetData(); }
-	KamataEngine::Vector2 GetBlockSize() { return Stage_->GetBlockSize(); }
 
 private:
 	// Csvデータ

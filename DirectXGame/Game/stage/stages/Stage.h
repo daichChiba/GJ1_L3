@@ -9,7 +9,6 @@ using namespace KamataEngine;
 
 struct StageData {
 	std::vector<std::vector<StageType>> data;
-	KamataEngine::Vector2 blockSize;
 };
 
 class Stage {
@@ -44,8 +43,6 @@ public: // 関数
 
 	// getter
 	std::vector<std::vector<StageType>> GetData() { return StageData_.data; }
-	KamataEngine::Vector2 GetBlockSize() { return StageData_.blockSize; }
-
 
 private: // 変数
 
