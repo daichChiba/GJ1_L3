@@ -25,7 +25,7 @@ void GameScene::Initialize() {
 	stageManager_->Initialize(ereaNum, stageNum, stage);
 
 	// プレイヤーの初期化
-	player_.Initialize(stageManager_->GetData(), stageManager_->GetBlockSize());
+	player_.Initialize(stageManager_->GetData(),stageManager_->GetBlockSize());
 
 	// ポータルマネージャー初期化
 	portalManager_ = new PortalManager();

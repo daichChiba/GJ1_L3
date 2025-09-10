@@ -1,11 +1,11 @@
 #pragma once
-#include "../../Game/Player/Player.h"
-#include "../../Game/stage/StageManager.h"
-#include "../../Game/stage/stages/stageBlock/PortalManager.h"
 #include "../Scene.h"
 #include "../manager/SceneID.h"
 #include "Game/LoadJsonFile/FileJson.h"
 #include "KamataEngine.h"
+#include "../../Game/Player/Player.h"
+#include "../../Game/stage/stages/stageBlock/PortalManager.h"
+#include "../../Game/stage/StageManager.h"
 
 class GameScene : public Scene {
 public:
@@ -56,6 +56,8 @@ private:
 
 	// Json読み書き用のファイルアクセサ
 	FileJson::FileAccessor* fileAccessor_;
+
+
 
 	bool isGoal = false;
 };
