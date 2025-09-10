@@ -22,6 +22,4 @@ StageMapCollider::Rect StageMapCollider::GetRectByIndex(uint32_t xIndex, uint32_
 	return rect;
 }
 
-Vector3 StageMapCollider::GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex) {
-	return Vector3(blockSize.x * xIndex, blockSize.y * (data.size() - 1 - yIndex), 0);
-}
+Vector3 StageMapCollider::GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex) { return Vector3(blockSize.x * xIndex, blockSize.y * (data.size() - 1 - yIndex), 0); }

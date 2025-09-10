@@ -5,6 +5,7 @@
 #include <base/DirectXCommon.h>
 #include <math/Vector3.h>
 
+
 using namespace KamataEngine;
 
 struct StageData {
